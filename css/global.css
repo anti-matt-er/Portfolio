@@ -13,7 +13,10 @@ html {
 }
 
 body {
-  background: #071E22;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#071E22), color-stop(150%, #008999)) fixed;
+  background-image: -o-linear-gradient(top left, #071E22, #008999 150%) fixed;
+  background-image: linear-gradient(to bottom right, #071E22, #008999 150%) fixed;
+  background-size: cover;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
