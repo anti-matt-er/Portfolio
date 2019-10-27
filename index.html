@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <!--
+
+     _           _   _        __  __       _   _          ______
+    / \         | | (_)      |  \/  |     | | | |        |  ____|
+   / _ \   _ __ | |_ _ ______| \  / | __ _| |_| |_ ______| |__   _ __
+  / /_\ \ | '_ \| __| |______| |\/| |/ _` | __| __|______|  __| | '__|
+ / /(_)\ \| | | | |_| |      | |  | | (_| | |_| |_       | |____| |
+/_/     \_\_| |_|\__|_|      |_|  |_|\__,_|\__|\__|      |______|_|
+
+  -->
+  <meta charset="utf-8">
+  <title>Anti-Matt-Er</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Exo:200&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/global.css">
+
+  <meta name="theme-color" content="#071E22">
+</head>
+
+<body class="landing">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  <div class="main-container">
+    <header>
+      <object class="logo" data="img/logo.svg" type="image/svg+xml">
+        <img src="img/logo.svg" />
+      </object>
+      <p class="intro">A hand-crafted digital portfolio</p>
+      <button type="button" class="text-button contact">Contact</a>
+    </header>
+    <main>
+      <section id="intro">
+        <div class="content">
+          <img src="img/icons/waving-hand.svg" class="default-icon" />
+          <h1>About me</h1>
+          <p>Hi! I'm Matt Burrows from Lancaster, UK. I make things! Both professionally and as a hobby. Look around the site for examples of my work, and labours of love.</p>
+        </div>
+        <img src="img/pixel_portrait.png" alt="This is me, err... sorta." class="hero" data-aos="fade-up" />
+      </section>
+      <section id="branding">
+        <div class="content">
+          <img src="img/icons/branding.svg" class="default-icon" />
+          <h1>Logos & Branding</h1>
+          <p>Custom-made, high-quality logos and branding. I dabble in a variety of styles, and can even upscale or modernize your existing brand assets!</p>
+        </div>
+        <img src="img/logos.png" class="hero" data-aos="fade-up" />
+      </section>
+      <section id="print">
+        <div class="content">
+          <img src="img/icons/print.svg" class="default-icon" />
+          <h1>Print</h1>
+          <p>Eye-catching album covers, posters, leaflets and more! I have years of experience working with printing companies and can work to any specification.</p>
+        </div>
+        <img src="img/print.png" class="hero" data-aos="fade-up" />
+      </section>
+      <section id="cc">
+        <div class="content">
+          <img src="img/icons/cc.svg" class="default-icon" />
+          <h1>Adobe Suite</h1>
+          <p>From making vector icons, to photo touch-ups and background removal. I'm adept at Photoshop, Illustrator and the rest of Adobe's Creative Cloud.</p>
+        </div>
+        <img src="img/CC.png" class="hero" data-aos="fade-up" />
+      </section>
+      <section id="misc">
+        <div class="content">
+          <img src="img/icons/misc.svg" class="default-icon" />
+          <h1>Everything Else</h1>
+          <p>Some of my other projects include a video game that's currently in production (Say hello to Kyrnwyck there!), a <a href="https://www.amazon.com/Consequence-Maxim-S-Freedman-ebook/dp/B0777PJPCK" target="_blank">short story</a>, I can design and program websites - such as this very site! I'm also a very competent programmer in C#, PHP, C++, JS and more.</p>
+        </div>
+        <img src="img/misc.gif" class="hero" data-aos="fade-up" />
+      </section>
+    </main>
+  </div>
+  <div class="background-pattern"></div>
+  <nav class="section-nav" data-description="Scroll down for...">
+    <a href="#intro" title="About me">
+      <img src="img/icons/waving-hand.svg" class="default-icon" />
+      <img src="img/icons/waving-hand-hover.svg" class="hover-icon" />
+    </a>
+    <a href="#branding" title="Logos & branding">
+      <img src="img/icons/branding.svg" class="default-icon" />
+      <img src="img/icons/branding-hover.svg" class="hover-icon" />
+    </a>
+    <a href="#print" title="Print">
+      <img src="img/icons/print.svg" class="default-icon" />
+      <img src="img/icons/print-hover.svg" class="hover-icon" />
+    </a>
+    <a href="#cc" title="Adobe Suite">
+      <img src="img/icons/cc.svg" class="default-icon" />
+      <img src="img/icons/cc-hover.svg" class="hover-icon" />
+    </a>
+    <a href="#misc" title="Everything else">
+      <img src="img/icons/misc.svg" class="default-icon" />
+      <img src="img/icons/misc-hover.svg" class="hover-icon" />
+    </a>
+  </nav>
+  <form action="https://formspree.io/xqkzlbky" method="POST" class="contact-form modal-closed">
+    <div>
+      <h1>Contact Me:</h1>
+      <label>
+        Name:
+        <input type="text" name="name">
+      </label>
+      <label>
+        Your email:
+        <input type="text" name="_replyto">
+      </label>
+      <label>
+        Message:
+        <textarea name="message"></textarea>
+      </label>
+      <label>
+        <button type="submit">Send</button>
+      </label>
+      <button type="button" class="text-button close">Close</a>
+    </div>
+  </form>
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out-sine',
+      mirror: true,
+      anchorPlacement: 'center-bottom'
+    });
+  </script>
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
