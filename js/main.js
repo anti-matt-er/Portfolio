@@ -1,5 +1,3 @@
-// TODO: Restore description text on scroll-up
-
 /** CONSTANTS **/
 
 const body = document.querySelector("body");
