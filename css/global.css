@@ -15,8 +15,7 @@ html {
 body {
   background: -o-linear-gradient(top left, #071E22, #008999);
   background: linear-gradient(to bottom right, #071E22, #008999);
-  background-attachment: fixed;
-  background-size: scroll;
+  background-attachment: scroll;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
