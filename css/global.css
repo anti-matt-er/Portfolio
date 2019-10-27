@@ -1,21 +1,19 @@
 html {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 *,
 :before,
 :after {
-    -webkit-box-sizing: inherit;
-            box-sizing: inherit;
+    box-sizing: inherit;
     font-family: inherit;
 }
 
 body {
-  background: -o-linear-gradient(top left, #071E22, #008999);
-  background: linear-gradient(to bottom right, #071E22, #008999);
-  background-attachment: scroll;
+  background: #071E22;
+  background: linear-gradient(to bottom right, #071E22, #008999 150%) fixed;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
@@ -40,8 +38,6 @@ a:visited,
 a:active,
 .text-button {
   color: #008999;
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
   text-decoration: none;
   background: transparent;
@@ -63,8 +59,6 @@ a:hover,
 .contact:active {
   font-size: 1.5em;
   color: #FBFFFE;
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
   font-variant: small-caps;
   position: fixed;
@@ -79,13 +73,9 @@ header {
   top: 0;
   left: 0;
   z-index: 100;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(7,30,34, 0.99)), to(transparent)) no-repeat;
-  background: -o-linear-gradient(rgba(7,30,34, 0.99), transparent) no-repeat;
   background: linear-gradient(rgba(7,30,34, 0.99), transparent) no-repeat;
   background-position: 0 0;
   height: 12em;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
@@ -107,8 +97,6 @@ header {
   font-size: 2em;
   text-align: center;
   opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
@@ -122,28 +110,15 @@ main {
 }
 
 section {
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(49.9%, transparent), color-stop(50%, #071E22));
-  background: -o-linear-gradient(top left, transparent 49.9%, #071E22 50%);
   background: linear-gradient(to bottom right, transparent 49.9%, #071E22 50%);
   min-height: 100%;
   padding: 10% 10% 10% 0;
   font-size: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
   overflow: hidden;
   text-align: right;
 }
@@ -181,13 +156,8 @@ section:nth-child(even) .default-icon {
 }
 
 section:nth-child(even) {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   text-align: left;
-  background: -webkit-gradient(linear, right bottom, left top, color-stop(49.9%, transparent), color-stop(50%, #071E22));
-  background: -o-linear-gradient(bottom right, transparent 49.9%, #071E22 50%);
   background: linear-gradient(to top left, transparent 49.9%, #071E22 50%);
   padding: 10% 0 10% 10%;
 }
@@ -214,15 +184,9 @@ section:first-child {
 .section-nav {
   position: fixed;
   bottom: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   font-size: 1.75em;
   width: 100%;
   z-index: 60;
@@ -230,8 +194,6 @@ section:first-child {
 
 .section-nav a {
   padding: 0 0.5em;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: relative;
 }
@@ -254,8 +216,6 @@ section:first-child {
 
 .default-icon,
 .hover-icon {
-  -webkit-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
 
@@ -276,15 +236,9 @@ h1 {
 
 .contact-form {
   position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   bottom: 0;
@@ -292,8 +246,6 @@ h1 {
   padding: 14em 5% 5%;
   background: rgba(0, 0, 0, 0.75);
   z-index: 75;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
@@ -330,8 +282,6 @@ button:not(.text-button) {
   border: 0;
   font-size: 1.25em;
   padding: 0.1em;
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -386,7 +336,7 @@ button:not(.text-button):hover {
     padding: 14em 1em 1em;
   }
   .contact-form > div {
-    font-size: 0.75em;
+    font size: 0.75em;
     width: 100%;
   }
   .contact-form label {
