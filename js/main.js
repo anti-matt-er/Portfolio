@@ -47,8 +47,13 @@ Array.prototype.forEach.call(even_sections, function(el, i) {
 Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
   el.addEventListener("click", function(e) {
     var anchor = document.querySelector(el.getAttribute("href"));
+    var anchor_pos = anchor.offsetTop;
+    var mq = window.matchMedia("(max-width: 768px)");
+    if (mq.matches) {
+        anchor_pos -= header.offsetHeight;
+    }
     window.scroll({
-      top: anchor.offsetTop,
+      top: anchor_pos,
       left: 0,
       behavior: 'smooth'
     });
