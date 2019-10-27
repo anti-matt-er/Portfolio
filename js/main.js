@@ -101,8 +101,8 @@ document.addEventListener("mousemove", (e) => {
 });
 
 window.addEventListener("devicemotion", (e) => {
-  mouse_pos.x = e.accelerationIncludingGravity.x;
-  mouse_pos.y = e.accelerationIncludingGravity.y;
+  mouse_pos.x = e.accelerationIncludingGravity.x * 100;
+  mouse_pos.y = e.accelerationIncludingGravity.y * 100;
   using_tilt = true;
 }, true);
 
