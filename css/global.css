@@ -14,6 +14,8 @@ html {
 body {
   background: #071E22;
   background: linear-gradient(to bottom right, #071E22, #008999 150%) fixed;
+  background-size: cover;
+  height: 100%;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
