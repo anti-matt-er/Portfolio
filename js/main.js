@@ -127,10 +127,10 @@ function update() {
   var mouse_y = mouse_pos.y;
   if (!using_tilt)
   {
-     mouse_y += scroll_pos;
+     mouse_y = -(mouse_y + scroll_pos);
   }
   container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-  container.style.backgroundPositionY = lerp(currentY, -mouse_y / parallax_divider, parallax_lerp) + "px";
+  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
 
   // Landing scroll
   if (scroll_pos > intro_scroll_threshold || contact_open) {
