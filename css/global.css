@@ -1,7 +1,6 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    height: 100vh;
 }
 
 *,
@@ -13,12 +12,19 @@ html {
 
 body {
   background: #071E22;
-  background: linear-gradient(to bottom right, #071E22, #008999 150%) fixed;
-  background-size: cover;
-  height: 100vh;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
+}
+
+.background {
+  background: linear-gradient(to bottom right, #071E22, #008999 150%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -100;
 }
 
 .background-pattern {
