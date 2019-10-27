@@ -13,9 +13,7 @@ html {
 }
 
 body {
-  background-image: -o-linear-gradient(top left, #071E22, #008999);
-  background-image: linear-gradient(to bottom right, #071E22, #008999);
-  background-attachment: scroll;
+  background-image: #071E22;
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
