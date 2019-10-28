@@ -1,7 +1,6 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    height: 100vh;
 }
 
 *,
@@ -16,7 +15,6 @@ body {
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
-  height: 100vh;
 }
 
 .background {
@@ -83,10 +81,8 @@ header {
   top: 0;
   left: 0;
   z-index: 100;
-  background: linear-gradient(rgba(7,30,34, 0.99), transparent) no-repeat;
-  background-position: 0 0;
   height: 12em;
-  transition: all 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
   will-change: height;
   transform: translate3d(0, 0, 0);
 }
@@ -97,7 +93,6 @@ header {
 }
 
 .landing header {
-  background-position: 0 -50em;
   height: 65vh;
   padding-top: 5%;
 }
