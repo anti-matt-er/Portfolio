@@ -16,7 +16,7 @@ update();
 
 function update() {
   // Landing scroll
-  if (scroll_pos > 0 || contact_open) {
+  if (scroll_pos > 0) {
     body.classList.remove("landing");
   } else {
     body.classList.add("landing");
