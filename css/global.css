@@ -131,10 +131,6 @@ section {
   text-align: right;
 }
 
-.landing section {
-  opacity: 0;
-}
-
 section p {
   padding: 0 0 0 2em;
 }
