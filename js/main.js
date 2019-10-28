@@ -66,19 +66,19 @@ Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
 container.style.backgroundPositionX = "0px";
 container.style.backgroundPositionY = "0px";
 
-document.addEventListener("scroll", function() {
+document.addEventListener("scroll", function () {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
   requestAnimationFrame(update);
 }, false);
 
-document.addEventListener("mousemove", (e) {
+document.addEventListener("mousemove", function (e) {
   mouse_pos.x = e.clientX;
   mouse_pos.y = e.clientY;
   using_tilt = false;
   requestAnimationFrame(update);
 });
 
-window.addEventListener("devicemotion", (e) {
+window.addEventListener("devicemotion", function (e) {
   mouse_pos.x = e.accelerationIncludingGravity.x * 100;
   mouse_pos.y = e.accelerationIncludingGravity.y * 100;
   using_tilt = true;
@@ -86,14 +86,14 @@ window.addEventListener("devicemotion", (e) {
 }, true);
 
 Array.prototype.forEach.call(contact_button, function(el, i) {
-  el.addEventListener("click", (e) {
+  el.addEventListener("click", function (e) {
     contact_open = true;
     contact_form.classList.remove("modal-closed");
     requestAnimationFrame(update);
   });
 });
 
-contact_close.addEventListener("click", (e) {
+contact_close.addEventListener("click", function (e) {
   contact_open = false;
   contact_form.classList.add("modal-closed");
   requestAnimationFrame(update);
@@ -117,7 +117,7 @@ function update() {
   container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
 
   // Fade out section nav
-  Array.prototype.forEach.call(sections, function(el, i) {
+  Array.prototype.forEach.call(sections, function (el, i) {
     var button = document.querySelector(".section-nav a[href=\"#" + el.getAttribute("id") + "\"]");
     blank_section_nav = false;
     if (section_nav.getAttribute("data-description") == "") {
