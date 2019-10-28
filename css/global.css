@@ -366,7 +366,6 @@ button:not(.text-button):hover {
     padding: 14em 1em 1em;
   }
   .contact-form > div {
-    font size: 0.75em;
     width: 100%;
   }
   .contact-form label {
