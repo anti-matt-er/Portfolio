@@ -325,9 +325,10 @@ button:not(.text-button):hover {
 }
 
 @media (max-width: 768px) {
-  section {
+  section:not(#spec_hack) {
     font-size: 1.2em;
     display: block;
+    padding-top: 10em;
   }
   section:first-child {
     margin-top: 18em;

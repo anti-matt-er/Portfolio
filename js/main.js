@@ -15,7 +15,7 @@ const parallax_divider = 8;
 const parallax_lerp_divider = 16;
 const parallax_lerp = 1 / parallax_lerp_divider;
 const parallax_threshold = 50;
-const intro_scroll_threshold = 100;
+const section_nav_scroll_threshold = 100;
 const default_section_nav_desc = section_nav.getAttribute("data-description");
 
 /** VARIABLES **/
@@ -47,10 +47,6 @@ Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
   el.addEventListener("click", function(e) {
     var anchor = document.querySelector(el.getAttribute("href"));
     var anchor_pos = anchor.offsetTop;
-    var mq = window.matchMedia("(max-width: 768px)");
-    if (mq.matches) {
-        anchor_pos -= header.offsetHeight;
-    }
     window.scroll({
       top: anchor_pos,
       left: 0,
@@ -73,14 +69,14 @@ document.addEventListener("scroll", function() {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
   AOS.refresh();
 
-  // Fade out section section nav
+  // Fade out section nav
   Array.prototype.forEach.call(sections, function(el, i) {
     var button = document.querySelector(".section-nav a[href=\"#" + el.getAttribute("id") + "\"]");
     blank_section_nav = false;
     if (section_nav.getAttribute("data-description") == "") {
       section_nav.setAttribute("data-description", default_section_nav_desc);
     }
-    if (scroll_pos > el.offsetTop - intro_scroll_threshold) {
+    if (scroll_pos > el.offsetTop - section_nav_scroll_threshold) {
       button.classList.add("visited");
       if (i == sections.length - 1) {
         section_nav.setAttribute("data-description", "");
@@ -131,7 +127,7 @@ function update() {
   container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
 
   // Landing scroll
-  if (scroll_pos > intro_scroll_threshold || contact_open) {
+  if (scroll_pos > 0 || contact_open) {
     body.classList.remove("landing");
   } else {
     body.classList.add("landing");
