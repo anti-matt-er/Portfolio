@@ -95,6 +95,10 @@ contact_close.addEventListener("click", (e) => {
   contact_form.classList.add("modal-closed");
 });
 
+header.addEventListener("transitionend", (e) => {
+  body.classList.remove("freeze");
+});
+
 /** MAIN LOOP **/
 
 function update() {
@@ -136,18 +140,12 @@ function update() {
       body.classList.add("freeze");
       body.classList.remove("landing");
       landing = false;
-      setTimeout(function () {
-        body.classList.remove("freeze");
-      }, 250);
     }
   } else {
     if (!landing) {
       body.classList.add("freeze");
       body.classList.add("landing");
       landing = true;
-      setTimeout(function () {
-        body.classList.remove("freeze");
-      }, 250);
     }
   }
 }
