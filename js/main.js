@@ -28,6 +28,7 @@ var mouse_pos = {
 var contact_open = false;
 var blank_section_nav = false;
 var using_tilt = false;
+var landing = true;
 
 /** INIT **/
 
@@ -128,9 +129,15 @@ function update() {
 
   // Landing scroll
   if (scroll_pos > 0 || contact_open) {
-    body.classList.remove("landing");
+    if (landing) {
+      body.classList.remove("landing");
+      landing = false;
+    }
   } else {
-    body.classList.add("landing");
+    if (!landing) {
+      body.classList.add("landing");
+      landing = true;
+    }
   }
 
   requestAnimationFrame(update);
