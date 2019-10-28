@@ -85,7 +85,7 @@ window.addEventListener("devicemotion", (e) => {
   requestAnimationFrame(update);
 }, true);
 
-Array.prototype.forEach.call(contact_button, function(el, i) ({
+Array.prototype.forEach.call(contact_button, function(el, i) {
   el.addEventListener("click", (e) => {
     contact_open = true;
     contact_form.classList.remove("modal-closed");
