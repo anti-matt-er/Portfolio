@@ -68,8 +68,6 @@ container.style.backgroundPositionY = "0px";
 
 document.addEventListener("scroll", function() {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
-  AOS.refresh();
-
   requestAnimationFrame(update);
 }, false);
 
@@ -100,6 +98,9 @@ contact_close.addEventListener("click", (e) => {
 /** MAIN LOOP **/
 
 function update() {
+  // Force AOS update
+  AOS.refresh();
+
   // Background pattern
   var currentX = parseFloat(container.style.backgroundPositionX);
   var currentY = parseFloat(container.style.backgroundPositionY);
@@ -111,11 +112,37 @@ function update() {
   container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
   container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
 
+  // Fade out section nav
+  Array.prototype.forEach.call(sections, function(el, i) {
+    var button = document.querySelector(".section-nav a[href=\"#" + el.getAttribute("id") + "\"]");
+    blank_section_nav = false;
+    if (section_nav.getAttribute("data-description") == "") {
+      section_nav.setAttribute("data-description", default_section_nav_desc);
+    }
+    if (scroll_pos > el.offsetTop - section_nav_scroll_threshold) {
+      button.classList.add("visited");
+      if (i == sections.length - 1) {
+        section_nav.setAttribute("data-description", "");
+        blank_section_nav = true;
+      }
+    } else{
+      button.classList.remove("visited");
+    }
+  });
+
   // Landing scroll
   if (scroll_pos > 0 || contact_open) {
     if (landing) {
-      body.classList.remove("landing");
-      landing = false;
+      if (scroll_pos > 0) {
+        setTimeout(function () {
+          body.classList.remove("landing");
+          landing = false;
+        }, 250);
+      }
+      else {
+        body.classList.remove("landing");
+        landing = false;
+      }
     }
   } else {
     if (!landing) {
