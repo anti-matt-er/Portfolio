@@ -88,11 +88,13 @@ window.addEventListener("devicemotion", (e) => {
 contact_button.addEventListener("click", (e) => {
   contact_open = true;
   contact_form.classList.remove("modal-closed");
+  requestAnimationFrame(update);
 });
 
 contact_close.addEventListener("click", (e) => {
   contact_open = false;
   contact_form.classList.add("modal-closed");
+  requestAnimationFrame(update);
 });
 
 /** MAIN LOOP **/
