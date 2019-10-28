@@ -70,23 +70,6 @@ document.addEventListener("scroll", function() {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
   AOS.refresh();
 
-  // Fade out section nav
-  Array.prototype.forEach.call(sections, function(el, i) {
-    var button = document.querySelector(".section-nav a[href=\"#" + el.getAttribute("id") + "\"]");
-    blank_section_nav = false;
-    if (section_nav.getAttribute("data-description") == "") {
-      section_nav.setAttribute("data-description", default_section_nav_desc);
-    }
-    if (scroll_pos > el.offsetTop - section_nav_scroll_threshold) {
-      button.classList.add("visited");
-      if (i == sections.length - 1) {
-        section_nav.setAttribute("data-description", "");
-        blank_section_nav = true;
-      }
-    } else{
-      button.classList.remove("visited");
-    }
-  });
   requestAnimationFrame(update);
 }, false);
 
