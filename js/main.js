@@ -115,7 +115,7 @@ setInterval(update, 1000/120);
 /** MAIN LOOP **/
 
 function update() {
-  // Background pattern
+  /*// Background pattern
   var currentX = parseFloat(container.style.backgroundPositionX);
   var currentY = parseFloat(container.style.backgroundPositionY);
   var mouse_y = mouse_pos.y;
@@ -124,7 +124,7 @@ function update() {
      mouse_y = -(mouse_y + scroll_pos);
   }
   container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
+  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";*/
 
   // Landing scroll
   if (scroll_pos > 0 || contact_open) {
