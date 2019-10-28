@@ -86,6 +86,7 @@ header {
   height: 12em;
   transition: all 0.5s ease-in-out;
   will-change: height;
+  transform: translate3d(0, 0, 0);
 }
 
 .logo {
