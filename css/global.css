@@ -84,24 +84,21 @@ header {
   background: linear-gradient(rgba(7,30,34, 0.99), transparent) no-repeat;
   background-position: 0 0;
   height: 12em;
+  transform: scaleY(0.99);
   transition: all 0.5s ease-in-out;
 }
 
 .logo {
   width: 100%;
   height: 100%;
-  transform: scaleY(0.99);
   transition: all 0.5s ease-in-out;
-}
-
-.landing .logo {
-  transform: scaleY(1);
 }
 
 .landing header {
   background-position: 0 -50em;
   height: 65%;
   padding-top: 5%;
+  transform: scaleY(1);
 }
 
 .intro {
