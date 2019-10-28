@@ -9,7 +9,7 @@ const even_sections = document.querySelectorAll("section:nth-child(even) .conten
 const section_nav = document.querySelector(".section-nav");
 const section_nav_buttons = document.querySelectorAll(".section-nav a");
 const contact_form = document.querySelector(".contact-form");
-const contact_button = document.querySelector(".contact");
+const contact_button = document.querySelectorAll(".contact");
 const contact_close = document.querySelector(".contact-form .close");
 const parallax_divider = 8;
 const parallax_lerp_divider = 16;
@@ -85,10 +85,12 @@ window.addEventListener("devicemotion", (e) => {
   requestAnimationFrame(update);
 }, true);
 
-contact_button.addEventListener("click", (e) => {
-  contact_open = true;
-  contact_form.classList.remove("modal-closed");
-  requestAnimationFrame(update);
+Array.prototype.forEach.call(contact_button, function(el, i) ({
+  el.addEventListener("click", (e) => {
+    contact_open = true;
+    contact_form.classList.remove("modal-closed");
+    requestAnimationFrame(update);
+  });
 });
 
 contact_close.addEventListener("click", (e) => {
