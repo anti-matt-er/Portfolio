@@ -1,6 +1,7 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    height: 100vh;
 }
 
 *,
@@ -15,6 +16,7 @@ body {
   color: #FBFFFE;
   font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
+  height: 100vh;
 }
 
 .background {
