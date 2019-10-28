@@ -71,14 +71,14 @@ document.addEventListener("scroll", function() {
   requestAnimationFrame(update);
 }, false);
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", (e) {
   mouse_pos.x = e.clientX;
   mouse_pos.y = e.clientY;
   using_tilt = false;
   requestAnimationFrame(update);
 });
 
-window.addEventListener("devicemotion", (e) => {
+window.addEventListener("devicemotion", (e) {
   mouse_pos.x = e.accelerationIncludingGravity.x * 100;
   mouse_pos.y = e.accelerationIncludingGravity.y * 100;
   using_tilt = true;
@@ -86,14 +86,14 @@ window.addEventListener("devicemotion", (e) => {
 }, true);
 
 Array.prototype.forEach.call(contact_button, function(el, i) {
-  el.addEventListener("click", (e) => {
+  el.addEventListener("click", (e) {
     contact_open = true;
     contact_form.classList.remove("modal-closed");
     requestAnimationFrame(update);
   });
 });
 
-contact_close.addEventListener("click", (e) => {
+contact_close.addEventListener("click", (e) {
   contact_open = false;
   contact_form.classList.add("modal-closed");
   requestAnimationFrame(update);
