@@ -87,18 +87,21 @@ document.addEventListener("scroll", function() {
       button.classList.remove("visited");
     }
   });
+  requestAnimationFrame(update);
 }, false);
 
 document.addEventListener("mousemove", (e) => {
   mouse_pos.x = e.clientX;
   mouse_pos.y = e.clientY;
   using_tilt = false;
+  requestAnimationFrame(update);
 });
 
 window.addEventListener("devicemotion", (e) => {
   mouse_pos.x = e.accelerationIncludingGravity.x * 100;
   mouse_pos.y = e.accelerationIncludingGravity.y * 100;
   using_tilt = true;
+  requestAnimationFrame(update);
 }, true);
 
 contact_button.addEventListener("click", (e) => {
@@ -110,8 +113,6 @@ contact_close.addEventListener("click", (e) => {
   contact_open = false;
   contact_form.classList.add("modal-closed");
 });
-
-update();
 
 /** MAIN LOOP **/
 
@@ -139,8 +140,6 @@ function update() {
       landing = true;
     }
   }
-
-  requestAnimationFrame(update);
 }
 
 /** FUNCTIONS **/
