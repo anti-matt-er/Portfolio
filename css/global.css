@@ -90,8 +90,12 @@ header {
 .logo {
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  perspective: 1000;
+  transform: scaleY(0.99);
+  transition: all 0.5s ease-in-out;
+}
+
+.landing .logo {
+  transform: scaleY(1);
 }
 
 .landing header {
