@@ -133,21 +133,21 @@ function update() {
   // Landing scroll
   if (scroll_pos > 0 || contact_open) {
     if (landing) {
-      if (scroll_pos > 0) {
-        setTimeout(function () {
-          body.classList.remove("landing");
-          landing = false;
-        }, 250);
-      }
-      else {
-        body.classList.remove("landing");
-        landing = false;
-      }
+      body.classList.add("freeze");
+      body.classList.remove("landing");
+      landing = false;
+      setTimeout(function () {
+        body.classList.remove("freeze");
+      }, 250);
     }
   } else {
     if (!landing) {
+      body.classList.add("freeze");
       body.classList.add("landing");
       landing = true;
+      setTimeout(function () {
+        body.classList.remove("freeze");
+      }, 250);
     }
   }
 }

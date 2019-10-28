@@ -17,6 +17,10 @@ body {
   font-size: 18px;
 }
 
+.freeze {
+  overflow: hidden;
+}
+
 .background {
   background: linear-gradient(to bottom right, #071E22, #008999 150%);
   position: fixed;
