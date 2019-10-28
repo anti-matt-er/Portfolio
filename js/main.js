@@ -67,7 +67,7 @@ container.style.backgroundPositionY = "0px";
 
 document.addEventListener("scroll", function() {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
-  AOS.refresh();
+  /*AOS.refresh();
 
   // Fade out section nav
   Array.prototype.forEach.call(sections, function(el, i) {
@@ -85,14 +85,14 @@ document.addEventListener("scroll", function() {
     } else{
       button.classList.remove("visited");
     }
-  });
+  });*/
 }, false);
 
-document.addEventListener("mousemove", (e) => {
+/*document.addEventListener("mousemove", (e) => {
   mouse_pos.x = e.clientX;
   mouse_pos.y = e.clientY;
   using_tilt = false;
-});
+});*/
 
 window.addEventListener("devicemotion", (e) => {
   mouse_pos.x = e.accelerationIncludingGravity.x * 100;
@@ -115,7 +115,7 @@ update();
 /** MAIN LOOP **/
 
 function update() {
-  // Background pattern
+  /*// Background pattern
   var currentX = parseFloat(container.style.backgroundPositionX);
   var currentY = parseFloat(container.style.backgroundPositionY);
   var mouse_y = mouse_pos.y;
@@ -124,7 +124,7 @@ function update() {
      mouse_y = -(mouse_y + scroll_pos);
   }
   container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
+  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";*/
 
   // Landing scroll
   if (scroll_pos > 0 || contact_open) {
