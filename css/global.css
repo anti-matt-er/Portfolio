@@ -85,6 +85,7 @@ header {
   background-position: 0 0;
   height: 12em;
   transition: all 0.5s ease-in-out;
+  will-change: height;
 }
 
 .logo {
