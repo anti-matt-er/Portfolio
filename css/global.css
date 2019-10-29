@@ -58,7 +58,9 @@ a:active,
 }
 
 a:hover,
-.text-button:hover {
+.text-button:hover,
+a:focus,
+.text-button:focus {
   color: #17BEBB;
 }
 
@@ -248,11 +250,13 @@ section:first-child {
   transition: all 0.25s linear;
 }
 
-a:hover .default-icon {
+a:hover .default-icon,
+a:focus .default-icon {
   opacity: 0;
 }
 
-a:hover .hover-icon {
+a:hover .hover-icon,
+a:focus .hover-icon {
   opacity: 1;
 }
 
@@ -314,7 +318,8 @@ button:not(.text-button) {
   transition: all 0.2s;
 }
 
-button:not(.text-button):hover {
+button:not(.text-button):hover,
+button:not(.text-button):focus {
   background: #17BEBB;
 }
 
@@ -328,7 +333,8 @@ button:not(.text-button):hover {
   font-size: 0.75em;
 }
 
-.close:hover {
+.close:hover,
+.close:focus {
   color: #17BEBB;
 }
 
@@ -397,5 +403,11 @@ button:not(.text-button):hover {
   }
   .landing-mobile-header {
     display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
