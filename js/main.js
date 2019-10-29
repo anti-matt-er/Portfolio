@@ -2,7 +2,6 @@
 
 const body = document.querySelector("body");
 const container = document.querySelector(".background-pattern");
-const header = document.querySelector("header");
 const sections = document.querySelectorAll("section");
 const odd_sections = document.querySelectorAll("section:nth-child(odd) .content");
 const even_sections = document.querySelectorAll("section:nth-child(even) .content");
@@ -15,7 +14,6 @@ const contact_tabbables = document.querySelectorAll(".contact-form input, .conta
 const parallax_divider = 8;
 const parallax_lerp_divider = 16;
 const parallax_lerp = 1 / parallax_lerp_divider;
-const parallax_threshold = 50;
 const section_nav_scroll_threshold = 100;
 const default_section_nav_desc = section_nav.getAttribute("data-description");
 const no_motion_query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -39,7 +37,7 @@ window.scroll({
   top: 0,
 });
 
-no_motion_query.addEventListener('change', () => {
+no_motion_query.addEventListener('change', function() {
   no_motion = true;
 });
 
