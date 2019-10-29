@@ -75,14 +75,12 @@ document.addEventListener("mousemove", function (e) {
   mouse_pos.x = e.clientX;
   mouse_pos.y = e.clientY;
   using_tilt = false;
-  requestAnimationFrame(update);
 });
 
 window.addEventListener("devicemotion", function (e) {
   mouse_pos.x = e.accelerationIncludingGravity.x * 100;
   mouse_pos.y = e.accelerationIncludingGravity.y * 100;
   using_tilt = true;
-  requestAnimationFrame(update);
 }, true);
 
 Array.prototype.forEach.call(contact_button, function(el, i) {
@@ -99,22 +97,13 @@ contact_close.addEventListener("click", function (e) {
   requestAnimationFrame(update);
 });
 
+update_pattern();
+
 /** MAIN LOOP **/
 
 function update() {
   // Force AOS update
   AOS.refresh();
-
-  // Background pattern
-  var currentX = parseFloat(container.style.backgroundPositionX);
-  var currentY = parseFloat(container.style.backgroundPositionY);
-  var mouse_y = mouse_pos.y;
-  if (!using_tilt)
-  {
-     mouse_y = -(mouse_y + scroll_pos);
-  }
-  container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
 
   // Fade out section nav
   Array.prototype.forEach.call(sections, function (el, i) {
@@ -149,6 +138,19 @@ function update() {
 }
 
 /** FUNCTIONS **/
+
+function update_pattern() {
+  var currentX = parseFloat(container.style.backgroundPositionX);
+  var currentY = parseFloat(container.style.backgroundPositionY);
+  var mouse_y = mouse_pos.y;
+  if (!using_tilt)
+  {
+     mouse_y = -(mouse_y + scroll_pos);
+  }
+  container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
+  container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
+  requestAnimationFrame(update_pattern);
+}
 
 function lerp(start, end, amt) {
   return (1-amt)*start+amt*end;
