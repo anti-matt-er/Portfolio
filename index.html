@@ -30,15 +30,12 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/global.css?c39">
+  <link rel="stylesheet" href="css/global.css?c46">
 
   <meta name="theme-color" content="#071E22">
 </head>
 
 <body class="landing">
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
   <div class="background"></div>
   <nav class="section-nav" data-description="Scroll down for...">
     <a href="#intro" title="About me">
@@ -67,7 +64,12 @@
       <object class="logo" data="img/logo.svg" type="image/svg+xml" tabindex="-1">
         <img src="img/logo.svg" alt="Anti-Matt-Er logo" role="img" />
       </object>
-      <p class="intro">A hand-crafted digital portfolio</p>
+      <p class="intro">
+        A hand-crafted digital portfolio
+        <!--[if IE]><b class="old"><![endif]-->
+        <b class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</b>
+        <!--[if IE]></b><![endif]-->
+      </p>
       <button type="button" class="text-button contact">Contact</button>
     </header>
     <header class="landing-mobile-header">
@@ -142,10 +144,9 @@
       <button type="button" class="text-button close" tabindex="-1">Close</button>
     </div>
   </form>
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js?c26"></script>
+  <script src="js/main.js?c27"></script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({

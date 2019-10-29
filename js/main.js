@@ -1,22 +1,24 @@
 /** CONSTANTS **/
 
-const body = document.querySelector("body");
-const container = document.querySelector(".background-pattern");
-const sections = document.querySelectorAll("section");
-const odd_sections = document.querySelectorAll("section:nth-child(odd) .content");
-const even_sections = document.querySelectorAll("section:nth-child(even) .content");
-const section_nav = document.querySelector(".section-nav");
-const section_nav_buttons = document.querySelectorAll(".section-nav a");
-const contact_form = document.querySelector(".contact-form");
-const contact_button = document.querySelectorAll(".contact");
-const contact_close = document.querySelector(".contact-form .close");
-const contact_tabbables = document.querySelectorAll(".contact-form input, .contact-form textarea, .contact-form button");
-const parallax_divider = 8;
-const parallax_lerp_divider = 16;
-const parallax_lerp = 1 / parallax_lerp_divider;
-const section_nav_scroll_threshold = 100;
-const default_section_nav_desc = section_nav.getAttribute("data-description");
-const no_motion_query = window.matchMedia('(prefers-reduced-motion: reduce)');
+var body = document.querySelector("body");
+var container = document.querySelector(".main-container");
+var pattern = document.querySelector(".background-pattern");
+var sections = document.querySelectorAll("section");
+var odd_sections = document.querySelectorAll("section:nth-child(odd) .content");
+var even_sections = document.querySelectorAll("section:nth-child(even) .content");
+var section_nav = document.querySelector(".section-nav");
+var section_nav_buttons = document.querySelectorAll(".section-nav a");
+var contact_form = document.querySelector(".contact-form");
+var contact_button = document.querySelectorAll(".contact");
+var contact_close = document.querySelector(".contact-form .close");
+var contact_tabbables = document.querySelectorAll(".contact-form input, .contact-form textarea, .contact-form button");
+var parallax_divider = 8;
+var parallax_lerp_divider = 16;
+var parallax_lerp = 1 / parallax_lerp_divider;
+var section_nav_scroll_threshold = 100;
+var default_section_nav_desc = section_nav.getAttribute("data-description");
+var no_motion_query = matchMedia('prefers-reduced-motion: reduce');
+var supports_scroll = 'scrollBehavior' in document.documentElement.style;
 
 /** VARIABLES **/
 
@@ -37,9 +39,13 @@ window.scroll({
   top: 0,
 });
 
-no_motion_query.addEventListener('change', function() {
+if (no_motion_query.matches) {
   no_motion = true;
-});
+}
+
+if (Function('/*@cc_on return document.documentMode===10@*/')()) {
+    body.className += ' old';
+}
 
 Array.prototype.forEach.call(odd_sections, function(el, i) {
   el.setAttribute("data-aos", "fade-left");
@@ -50,16 +56,18 @@ Array.prototype.forEach.call(even_sections, function(el, i) {
 });
 
 Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
-  el.addEventListener("click", function(e) {
-    var anchor = document.querySelector(el.getAttribute("href"));
-    var anchor_pos = anchor.offsetTop;
-    window.scroll({
-      top: anchor_pos,
-      left: 0,
-      behavior: 'smooth'
+  if (supports_scroll) {
+    el.addEventListener("click", function(e) {
+      var anchor = document.querySelector(el.getAttribute("href"));
+      var anchor_pos = anchor.offsetTop;
+      window.scroll({
+        top: anchor_pos,
+        left: 0,
+        behavior: 'smooth'
+      });
+      e.preventDefault();
     });
-    e.preventDefault();
-  });
+  }
   el.addEventListener("mouseout", function(e) {
     section_nav.setAttribute("data-description", blank_section_nav ? "" : default_section_nav_desc);
   });
@@ -68,11 +76,16 @@ Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
   });
 });
 
-container.style.backgroundPositionX = "0px";
-container.style.backgroundPositionY = "0px";
+pattern.style.backgroundPositionX = "0px";
+pattern.style.backgroundPositionY = "0px";
 
 document.addEventListener("scroll", function () {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
+  requestAnimationFrame(update);
+}, false);
+
+container.addEventListener("scroll", function () {
+  scroll_pos = container.scrollTop;
   requestAnimationFrame(update);
 }, false);
 
@@ -157,15 +170,15 @@ function update() {
 function update_pattern() {
   if (!no_motion)
   {
-    var currentX = parseFloat(container.style.backgroundPositionX);
-    var currentY = parseFloat(container.style.backgroundPositionY);
+    var currentX = parseFloat(pattern.style.backgroundPositionX);
+    var currentY = parseFloat(pattern.style.backgroundPositionY);
     var mouse_y = mouse_pos.y;
     if (!using_tilt)
     {
        mouse_y = -(mouse_y + scroll_pos);
     }
-    container.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-    container.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
+    pattern.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
+    pattern.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
     requestAnimationFrame(update_pattern);
   }
 }
