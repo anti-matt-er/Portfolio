@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mirabeau Bridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://anti-matt-er.github.io/Portfolio/css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="pages/P (1).jpg">
+    <link rel="preload" as="image" href="pages/P (2).jpg">
+    <link rel="preload" as="image" href="pages/P (3).jpg">
+    <link rel="preload" as="image" href="pages/P (4).jpg">
+    <link rel="preload" as="image" href="pages/P (5).jpg">
+    <link rel="preload" as="image" href="pages/P (6).jpg">
+    <link rel="preload" as="image" href="pages/P (7).jpg">
+    <link rel="preload" as="image" href="pages/P (8).jpg">
+    <link rel="preload" as="image" href="pages/P (9).jpg">
+    <link rel="preload" as="image" href="pages/P (10).jpg">
+    <link rel="preload" as="image" href="pages/P (11).jpg">
+    <link rel="preload" as="image" href="pages/P (12).jpg">
+    <link rel="preload" as="image" href="pages/P (13).jpg">
+    <link rel="preload" as="image" href="pages/P (14).jpg">
+    <link rel="preload" as="image" href="pages/P (15).jpg">
+    <link rel="preload" as="image" href="pages/P (16).jpg">
+    <link rel="preload" as="image" href="pages/P (17).jpg">
+    <link rel="preload" as="image" href="pages/P (18).jpg">
+    <link rel="preload" as="image" href="pages/P (19).jpg">
+    <link rel="preload" as="image" href="pages/P (20).jpg">
+    <link rel="preload" as="image" href="pages/P (21).jpg">
+    <link rel="preload" as="image" href="pages/P (22).jpg">
+</head>
+
+<body>
+    <div id="container">
+        <div id="wrapper">
+            <div id="book" class="front">
+                <div id="front" class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div class="page" data-density="hard"></div>
+                <div id="back" class="page" data-density="hard"></div>
+            </div>
+        </div>
+    </div>
+    <script src="page-flip.browser.js"></script>
+    <script src="https://anti-matt-er.github.io/Portfolio/js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="https://anti-matt-er.github.io/Portfolio/js/plugins.js"></script>
+    <script type="text/javascript">
+        const book = document.getElementById('book');
+        const pages = document.querySelectorAll('.page');
+
+        const pageFlip = new St.PageFlip(
+            book,
+            {
+                width: 1,
+                height: 1,
+                size: "stretch",
+                showCover: true,
+                showPageCorners: false,
+                flippingTime: 500,
+            }
+        );
+        pageFlip.loadFromHTML(pages);
+
+        const front = 0;
+        const back = pageFlip.getPageCount() - 1;
+
+        pageFlip.on('flip', (e) => {
+            let page = e.data;
+            book.classList.remove('front');
+            book.classList.remove('back');
+            switch (page) {
+                case front:
+                    book.classList.add('front');
+                    break;
+                case back:
+                    book.classList.add('back');
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>
