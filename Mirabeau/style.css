@@ -137,3 +137,11 @@ body {
 .page:nth-child(22) {
     background: center/100% url("pages/P (22).jpg") #def;
 }
+
+.page:nth-child(23) {
+    background: center/100% url("pages/P (23).jpg") #def;
+}
+
+.page:nth-child(24) {
+    background: center/100% url("pages/P (24).jpg") #def;
+}
