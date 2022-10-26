@@ -76,9 +76,6 @@ Array.prototype.forEach.call(section_nav_buttons, function(el, i) {
   });
 });
 
-pattern.style.backgroundPositionX = "0px";
-pattern.style.backgroundPositionY = "0px";
-
 document.addEventListener("scroll", function () {
   scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
   requestAnimationFrame(update);
@@ -88,18 +85,6 @@ container.addEventListener("scroll", function () {
   scroll_pos = container.scrollTop;
   requestAnimationFrame(update);
 }, false);
-
-document.addEventListener("mousemove", function (e) {
-  mouse_pos.x = e.clientX;
-  mouse_pos.y = e.clientY;
-  using_tilt = false;
-});
-
-window.addEventListener("devicemotion", function (e) {
-  mouse_pos.x = e.accelerationIncludingGravity.x * 100;
-  mouse_pos.y = e.accelerationIncludingGravity.y * 100;
-  using_tilt = true;
-}, true);
 
 Array.prototype.forEach.call(contact_button, function(el, i) {
   el.addEventListener("click", function (e) {
@@ -163,26 +148,4 @@ function update() {
       landing = true;
     }
   }
-}
-
-/** FUNCTIONS **/
-
-function update_pattern() {
-  if (!no_motion)
-  {
-    var currentX = parseFloat(pattern.style.backgroundPositionX);
-    var currentY = parseFloat(pattern.style.backgroundPositionY);
-    var mouse_y = mouse_pos.y;
-    if (!using_tilt)
-    {
-       mouse_y = -(mouse_y + scroll_pos);
-    }
-    pattern.style.backgroundPositionX = lerp(currentX, -mouse_pos.x / parallax_divider, parallax_lerp) + "px";
-    pattern.style.backgroundPositionY = lerp(currentY, mouse_y / parallax_divider, parallax_lerp) + "px";
-    requestAnimationFrame(update_pattern);
-  }
-}
-
-function lerp(start, end, amt) {
-  return (1-amt)*start+amt*end;
 }
