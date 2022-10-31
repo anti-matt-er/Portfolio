@@ -33,13 +33,16 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/nu.css">
 
+  <script type="module" src="js/vendor/model-viewer.min.js"></script>
   <meta name="theme-color" content="#F54838">
 </head>
 
 <body class="landing">
   <div class="window">
-    <section>
-      <img src="img/pixel_portrait.png" class="portrait" alt="Pixel Portrait" />
+    <section id="intro-window" class="expand">
+      <model-viewer src="img/portrait/model.glb" alt="Voxel selfie" loading="eager" shadow-intensity="2"
+        camera-orbit="0deg 90deg 100%" camera-target="auto auto -0.35m" environment-image="img/portrait/studio.hdr">
+      </model-viewer>
     </section>
     <section>
       <img src="img/logos.png" class="hero" alt="Logo Examples" />
@@ -118,8 +121,23 @@
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="js/plugins.js"></script>
   <script>
-    var main = document.querySelector("main");
-    var hero = document.querySelector(".window");
+    const default_portrait_yaw = 0;
+    const default_portrait_pitch = 85.0;
+    const max_portrait_rot = 20.0;
+    const main = document.querySelector("main");
+    const hero = document.querySelector(".window");
+    const portrait = document.querySelector("#intro-window>model-viewer");
+
+    window.addEventListener("mousemove", (e) => {
+      let height = document.documentElement.clientHeight;
+      let width = document.documentElement.clientWidth;
+      let center_x = portrait.clientWidth / 2.0;
+      let center_y = height / 2.0;
+      let yaw = -(e.pageX - center_x) / width * max_portrait_rot + default_portrait_yaw;
+      let pitch = -(e.pageY - center_y) / height * max_portrait_rot + default_portrait_pitch;
+      portrait.cameraOrbit = yaw.toString() + "deg " + pitch.toString() + "deg 110%";
+    });
+
     main.addEventListener("scroll", (e) => {
       hero.scrollLeft = (main.scrollTop / main.clientHeight) * hero.clientWidth;
     });

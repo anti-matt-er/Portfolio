@@ -96,15 +96,16 @@ h1:after {
     max-height: 100%;
 }
 
-.window>section>img {
+.window>section>img,
+.window>section>model-viewer {
     margin: auto;
     max-height: 100%;
     max-width: 100%;
 }
 
-.window>section>img.portrait {
-    transform: scale(2);
-    max-height: 50%;
+.window>section>model-viewer {
+    width: 100%;
+    height: 100%;
 }
 
 .panel {
