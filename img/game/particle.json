@@ -1,0 +1,32 @@
+{ "frames": {
+   "particle0": {
+    "frame": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "sourceSize": { "w": 5, "h": 5 }
+   },
+   "particle1": {
+    "frame": { "x": 5, "y": 0, "w": 5, "h": 5 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "sourceSize": { "w": 5, "h": 5 }
+   },
+   "particle2": {
+    "frame": { "x": 10, "y": 0, "w": 5, "h": 5 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "sourceSize": { "w": 5, "h": 5 }
+   },
+   "particle3": {
+    "frame": { "x": 15, "y": 0, "w": 5, "h": 5 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "sourceSize": { "w": 5, "h": 5 }
+   }
+ },
+ "animations": {
+   "play": ["particle0", "particle1", "particle2", "particle3"]
+ },
+ "meta": {
+  "image": "particle.png",
+  "format": "RGBA8888",
+  "size": { "w": 20, "h": 5 },
+  "scale": "1"
+ }
+}

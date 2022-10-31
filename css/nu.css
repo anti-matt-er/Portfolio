@@ -135,6 +135,122 @@ h1:after {
     margin: auto;
 }
 
+section.expand {
+    padding: 0 3.75rem 0 0;
+}
+
+section.expand-full {
+    padding: 0;
+}
+
+#game-window {
+    display: block;
+    font-size: 4rem;
+    font-family: 'Rajdhani', sans-serif;
+    color: #EDF2F7;
+    text-shadow: 0.25rem 0.25rem #202C38;
+}
+
+.game-container {
+    margin-top: -8rem;
+    width: 100%;
+    height: 100%;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    padding: 0 2rem;
+    z-index: 100;
+    height: 8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.game-score {
+    font-style: oblique;
+    color: #F54838;
+}
+
+.game-score-value {
+    font-style: normal;
+    color: #EDF2F7;
+}
+
+.game-score>.game-score-value {
+    padding-left: 0.25em;
+}
+
+.game-health {
+    width: 40%;
+    height: 3rem;
+    border: 0.45rem solid #EDF2F7;
+    border-radius: 3rem;
+}
+
+.game-health-value {
+    width: 100%;
+    height: 100%;
+    background: #F54838;
+    border-radius: 3rem;
+    transition: width 0.5s ease;
+}
+
+.game-overlay {
+    display: flex;
+    position: relative;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.game-over-message {
+    font-size: 1.5em;
+}
+
+.game-over-score {
+    font-size: 0.75em;
+    color: #F54838;
+    margin-bottom: 1rem;
+}
+
+.game-hi-score {
+    font-size: 0.5em;
+    color: #F54838;
+    margin-bottom: 2rem;
+}
+
+.game-hi-score-value {
+    color: #EDF2F7;
+}
+
+.game-play-button {
+    padding: 0 1em;
+    background: #F54838;
+    color: #EDF2F7;
+    border: 0.4rem solid #EDF2F7;
+    border-radius: 1rem;
+    transition: background 0.5s ease;
+}
+
+.game-play-button:hover {
+    background: #376480;
+}
+
 header {
     height: 12rem;
     padding: 1rem;

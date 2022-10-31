@@ -1,0 +1,27 @@
+{ "frames": {
+   "player_laser0": {
+    "frame": { "x": 0, "y": 0, "w": 5, "h": 32 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 32 },
+    "sourceSize": { "w": 5, "h": 32 }
+   },
+   "player_laser1": {
+    "frame": { "x": 5, "y": 0, "w": 5, "h": 32 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 32 },
+    "sourceSize": { "w": 5, "h": 32 }
+   },
+   "player_laser2": {
+    "frame": { "x": 10, "y": 0, "w": 5, "h": 32 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 5, "h": 32 },
+    "sourceSize": { "w": 5, "h": 32 }
+   }
+ },
+ "animations": {
+   "hit": ["player_laser0", "player_laser1", "player_laser2"]
+ },
+ "meta": {
+  "image": "player_laser.png",
+  "format": "RGBA8888",
+  "size": { "w": 15, "h": 32 },
+  "scale": "1"
+ }
+}

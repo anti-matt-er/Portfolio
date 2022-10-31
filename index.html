@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="css/nu.css">
 
   <script type="module" src="js/vendor/model-viewer.min.js"></script>
+  <script src="https://pixijs.download/release/pixi.js"></script>
   <meta name="theme-color" content="#F54838">
 </head>
 
@@ -54,8 +55,23 @@
     <section id="cc-window">
       <img src="img/CC.png" class="hero" alt="Adobe suite demonstration" />
     </section>
-    <section>
-      <img src="img/misc.gif" class="hero" alt="Other projects" />
+    <section id="game-window" class="expand">
+      <div class="game-header">
+        <div class="game-score">SCORE: <span class="game-score-value">0</span></div>
+        <div class="game-health">
+          <div class="game-health-value"></div>
+        </div>
+      </div>
+      <div class="game-container"></div>
+      <div class="game-overlay">
+        <button class="game-start game-play-button" onclick="startGame();">Play</button>
+        <div class="game-over hidden">
+          <span class="game-over-message">GAME OVER!</span>
+          <span class="game-over-score">Score: <span class="game-score-value">0</span></span>
+          <span class="game-hi-score">High Score: <span class="game-hi-score-value">0</span></span>
+          <button class="game-play-button" onclick="startGame();">Play Again</button>
+        </div>
+      </div>
     </section>
   </div>
   <div class="panel main">
@@ -126,6 +142,7 @@
   <div class="panel shadow3"></div>
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="js/plugins.js"></script>
+  <script src="js/game.js"></script>
   <script>
     const default_portrait_yaw = 0;
     const default_portrait_pitch = 85.0;

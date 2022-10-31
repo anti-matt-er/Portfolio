@@ -1,0 +1,24 @@
+{ "frames": {
+   "starL": {
+    "frame": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "sourceSize": { "w": 7, "h": 7 }
+   },
+   "starM": {
+    "frame": { "x": 7, "y": 0, "w": 7, "h": 7 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "sourceSize": { "w": 7, "h": 7 }
+   },
+   "starS": {
+    "frame": { "x": 14, "y": 0, "w": 7, "h": 7 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 7 },
+    "sourceSize": { "w": 7, "h": 7 }
+   }
+ },
+ "meta": {
+  "image": "star.png",
+  "format": "RGBA8888",
+  "size": { "w": 21, "h": 7 },
+  "scale": "1"
+ }
+}
