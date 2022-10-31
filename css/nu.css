@@ -18,27 +18,8 @@ body {
     background: #EDF2F7;
     color: #202C38;
     font-family: 'Jost', sans-serif;
-    font-weight: 400;
+    font-weight: 200;
     width: 100%;
-}
-
-a,
-a:visited,
-a:active,
-.text-button {
-    color: #F54838;
-    transition: all 0.2s;
-    text-decoration: none;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-}
-
-a:hover,
-.text-button:hover,
-a:focus,
-.text-button:focus {
-    color: #FFA024;
 }
 
 h1,
@@ -181,7 +162,7 @@ main {
 
 main>section {
     flex-shrink: 0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     min-height: 100%;
     padding-top: 3rem;
     transition: font-size 0.5s ease, padding-top 0.5s ease;
@@ -191,10 +172,48 @@ main>section p {
     line-height: 1.75em;
 }
 
-footer {
+main a,
+main a:visited,
+main a:active,
+main .text-button {
+    display: inline-block;
     position: relative;
+    color: #F54838;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+main a::after,
+main a:visited::after,
+main a:active::after,
+main .text-button::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    margin: auto;
+    width: 0;
+    margin-top: -0.5rem;
+    left: 50%;
+    height: 0.1rem;
+    background: #B0C3CF;
+    border-radius: 0.25rem;
+    transition: width 0.25s ease, left 0.25s ease;
+}
+
+main a:hover::after,
+main .text-button:hover::after,
+main a:focus::after,
+main .text-button:focus::after {
+    left: 0;
+    width: 100%;
+}
+
+footer {
+    border-top: 0.5rem solid #202C38;
     background: #F54838;
-    height: 5.5rem;
+    height: 6rem;
     flex-shrink: 0;
     z-index: 100;
     transition: height 0.5s ease;
@@ -206,7 +225,7 @@ footer::before {
     position: absolute;
     height: 3rem;
     bottom: 0;
-    margin-bottom: 5.5rem;
+    margin-bottom: 6rem;
     background: linear-gradient(transparent, #EDF2F7);
     transition: margin-bottom 0.5s ease;
 }
@@ -218,32 +237,53 @@ footer::before {
 }
 
 .section-nav {
-    border-top: 0.5rem solid #202C38;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
 
 .section-nav>a {
+    display: flex;
+    position: relative;
     width: 100%;
     height: 100%;
-    padding: 1rem;
-    position: relative;
     transition: padding 0.5s ease, background 0.5s ease;
+}
+
+.section-nav>a>span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    margin-top: -1px;
+    background: #202C38;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 1.15rem;
+    line-height: 2rem;
+    color: #EDF2F7;
+    transition: height 0.25s ease, margin-top 0.25s ease;
+    overflow: hidden;
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.section-nav>a:hover>span {
+    margin-top: -2rem;
+    height: 2rem;
 }
 
 .section-nav>a>img {
     width: 3rem;
     height: 3rem;
     margin: auto;
-    display: block;
     transition: width 0.5s ease, height 0.5s ease;
 }
 
 .section-nav>a:hover {
-    background-color: #FFA024;
+    background-color: #376480;
 }
 
 @media screen and (max-width: 1365px) {
@@ -258,7 +298,7 @@ footer::before {
     }
 }
 
-@media screen and (max-width: 1165px) {
+@media screen and (orientation: portrait) {
     .panel.main {
         left: 0;
         top: 38.2%;
@@ -342,8 +382,15 @@ footer::before {
     }
 }
 
+@media screen and (max-height: 1165px),
+screen and (max-width: 1165px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 @media screen and (max-height: 705px),
-screen and (max-width: 485px) {
+screen and (max-width: 705px) {
     html {
         font-size: 12px;
     }

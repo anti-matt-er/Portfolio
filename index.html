@@ -27,7 +27,8 @@
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#F54838">
   <meta name="msapplication-TileColor" content="#00aba9">
 
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Jost&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400&family=Jost&family=Rajdhani:wght@600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
@@ -44,13 +45,13 @@
         camera-orbit="0deg 90deg 100%" camera-target="auto auto -0.35m" environment-image="img/portrait/studio.hdr">
       </model-viewer>
     </section>
-    <section>
+    <section id="branding-window">
       <img src="img/logos.png" class="hero" alt="Logo Examples" />
     </section>
-    <section>
+    <section id="print-window">
       <img src="img/print.png" class="hero" alt="Print examples" />
     </section>
-    <section>
+    <section id="cc-window">
       <img src="img/CC.png" class="hero" alt="Adobe suite demonstration" />
     </section>
     <section>
@@ -87,7 +88,7 @@
         <p>From vector icons to photo touch-ups and background removal: I'm adept at Photoshop, Illustrator and the rest
           of Adobe's Creative Cloud.</p>
       </section>
-      <section id="misc" tabindex="0">
+      <section id="game" tabindex="0">
         <h1>Everything Else</h1>
         <p>My other projects include a video game (in production), a <a
             href="https://www.amazon.com/Consequence-Maxim-S-Freedman-ebook/dp/B0777PJPCK" target="_blank">short
@@ -99,18 +100,23 @@
       <nav class="section-nav">
         <a href="#intro" title="About me">
           <img src="img/icons/waving-hand.svg" alt="Intro icon" role="img">
+          <span>About Me</span>
         </a>
         <a href="#branding" title="Logos &amp; branding">
           <img src="img/icons/branding.svg" alt="Branding icon" role="img">
+          <span>Branding</span>
         </a>
         <a href="#print" title="Print">
           <img src="img/icons/print.svg" alt="Print icon" role="img">
+          <span>Print</span>
         </a>
         <a href="#cc" title="Adobe Suite">
           <img src="img/icons/cc.svg" alt="Adobe icon" role="img">
+          <span>Adobe Suite</span>
         </a>
-        <a href="#misc" title="Everything else">
+        <a href="#game" title="Everything else">
           <img src="img/icons/misc.svg" alt="Misc icon" role="img">
+          <span>More</span>
         </a>
       </nav>
     </footer>
@@ -139,7 +145,7 @@
     });
 
     main.addEventListener("scroll", (e) => {
-      hero.scrollLeft = (main.scrollTop / main.clientHeight) * hero.clientWidth;
+      hero.scrollLeft = (main.scrollTop / main.scrollHeight) * hero.scrollWidth;
     });
   </script>
 </body>
