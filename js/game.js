@@ -122,6 +122,10 @@ let mouse = {
   x: 0,
   y: 0,
 };
+let gameSize = {
+  w: gameWindow.clientWidth,
+  h: gameWindow.clientHeight,
+};
 let shake = {
   amount: 0,
   magnitude: 0,
@@ -145,8 +149,8 @@ class GameObject {
   x;
   y;
   shakeParallax = 1.0;
-  #normalizedPosition = new PIXI.Point(0, 0);
   #velocity = new PIXI.Point(0, 0);
+  #normalizedPosition = new PIXI.Point(0, 0);
 
   constructor(sprite, container = game.stage) {
     this.sprite = sprite;
@@ -167,8 +171,6 @@ class GameObject {
     this.x = x;
     this.y = y;
     this.updatePosition();
-    this.#normalizedPosition.x = gameSize().w / x;
-    this.#normalizedPosition.y = gameSize().h / y;
     this.rescale();
   }
 
@@ -225,10 +227,15 @@ class GameObject {
     this.scale(globalScale());
   }
 
+  savePosition() {
+    this.#normalizedPosition.x = this.x / gameSize.w;
+    this.#normalizedPosition.y = this.y / gameSize.h;
+  }
+
   reflow() {
     this.rescale();
-    this.x = this.#normalizedPosition.x * gameSize().w;
-    this.y = this.#normalizedPosition.y * gameSize().h;
+    this.x = this.#normalizedPosition.x * gameSize.w;
+    this.y = this.#normalizedPosition.y * gameSize.h;
     this.updatePosition();
   }
 
@@ -240,8 +247,6 @@ class GameObject {
     this.y += this.#velocity.y * delta;
     this.midLoop();
     this.updatePosition();
-    this.#normalizedPosition.x = this.x / gameSize().w;
-    this.#normalizedPosition.y = this.y / gameSize().h;
   }
 }
 
@@ -273,14 +278,14 @@ class Entity extends GameObject {
         globalScale() * (this.bounds + this.width / 2.0),
         Math.min(
           this.x,
-          gameSize().w - globalScale() * (this.bounds + this.width / 2.0)
+          gameSize.w - globalScale() * (this.bounds + this.width / 2.0)
         )
       );
       this.y = Math.max(
         globalScale() * (this.bounds + this.height / 2.0),
         Math.min(
           this.y,
-          gameSize().h - globalScale() * (this.bounds + this.height / 2.0)
+          gameSize.h - globalScale() * (this.bounds + this.height / 2.0)
         )
       );
     }
@@ -338,7 +343,7 @@ class Star extends Particle {
   kill() {
     this.instance(
       Math.floor(
-        Math.random() * (gameSize().w - starBounds * globalScale() * 2)
+        Math.random() * (gameSize.w - starBounds * globalScale() * 2)
       ) +
         starBounds * globalScale(),
       -starBounds
@@ -347,7 +352,7 @@ class Star extends Particle {
 
   loop(delta) {
     super.loop(delta);
-    if (this.y > gameSize().h + starBounds) {
+    if (this.y > gameSize.h + starBounds) {
       this.kill();
     }
   }
@@ -427,9 +432,9 @@ class Ordnance extends Entity {
 
     if (
       this.x < -this.width ||
-      this.x > gameSize().w + this.width ||
+      this.x > gameSize.w + this.width ||
       this.y < -this.height ||
-      this.y > gameSize().h + this.height
+      this.y > gameSize.h + this.height
     ) {
       this.kill();
       return;
@@ -533,7 +538,7 @@ class Enemy extends Character {
 
   shoot() {
     if (!this.active || !entities.player.active) return;
-    if (this.y > gameSize().h * enemyFireCutoff) return;
+    if (this.y > gameSize.h * enemyFireCutoff) return;
     let orb = entities.enemyOrbs.instanceNext(
       this.x + enemyOrbOffset.x * globalScale(),
       this.y + enemyOrbOffset.y * globalScale()
@@ -548,7 +553,7 @@ class Enemy extends Character {
   loop(delta) {
     if (!this.active) return;
     super.loop(delta);
-    if (this.y > gameSize().h + this.height) {
+    if (this.y > gameSize.h + this.height) {
       this.kill();
     }
   }
@@ -582,15 +587,8 @@ class EntityPool {
   }
 }
 
-const gameSize = () => {
-  return {
-    w: gameWindow.clientWidth,
-    h: gameWindow.clientHeight,
-  };
-};
-
 const globalScale = () => {
-  return Math.min(gameSize().w / virtualGameWidth, maxScale);
+  return Math.min(gameSize.w / virtualGameWidth, maxScale);
 };
 
 const loadFromSpritesheet = (sheetName, resource) => {
@@ -671,18 +669,19 @@ const shakeScreen = (magnitude) => {
   shake.amount = 1.0;
 };
 
-const reflow = (force = false) => {
+const reflow = () => {
   if (!gameReady) return;
-  if (force) {
-    setTimeout(() => {
-      game.renderer.resize(gameWindow.clientWidth, gameWindow.clientHeight);
-      entities.player.y = gameSize().h * playerSpawn.y;
-      entities.player.updatePosition();
-    });
-  }
+  entities.all.forEach((entity) => {
+    entity.savePosition();
+  });
+  gameSize.w = gameWindow.clientWidth;
+  gameSize.h = gameWindow.clientHeight;
+  game.renderer.resize(gameSize.w, gameSize.h);
   entities.all.forEach((entity) => {
     entity.reflow();
   });
+  entities.player.y = gameSize.h * playerSpawn.y;
+  entities.player.updatePosition();
 };
 
 const showHeader = () => {
@@ -721,8 +720,8 @@ const updateHealth = (health) => {
 const spawnPlayer = () => {
   if (!entities.player.active) {
     entities.player.instance(
-      gameSize().w * playerSpawn.x,
-      gameSize().h * playerSpawn.y
+      gameSize.w * playerSpawn.x,
+      gameSize.h * playerSpawn.y
     );
   }
 };
@@ -743,7 +742,7 @@ const spawnEnemy = () => {
     (enemyDimensions.w / 2.0 + arenaBounds) * globalScale();
   enemySpawnChance = enemySpawnBaseChance;
   let enemy = entities.enemies.instanceNext(
-    Math.floor(Math.random() * (gameSize().w - enemySpawnBounds * 2)) +
+    Math.floor(Math.random() * (gameSize.w - enemySpawnBounds * 2)) +
       enemySpawnBounds,
     -enemyDimensions.h
   );
@@ -825,33 +824,33 @@ PIXI.Loader.shared.load((loader, resources) => {
   for (let i = 0; i < starData.L.amount; i++) {
     entities.stars.L.instanceNext(
       Math.floor(
-        Math.random() * (gameSize().w - starBounds * globalScale() * 2)
+        Math.random() * (gameSize.w - starBounds * globalScale() * 2)
       ) +
         starBounds * globalScale(),
-      Math.random() * gameSize().h
+      Math.random() * gameSize.h
     );
   }
   for (let i = 0; i < starData.M.amount; i++) {
     entities.stars.M.instanceNext(
       Math.floor(
-        Math.random() * (gameSize().w - starBounds * globalScale() * 2)
+        Math.random() * (gameSize.w - starBounds * globalScale() * 2)
       ) +
         starBounds * globalScale(),
-      Math.random() * gameSize().h
+      Math.random() * gameSize.h
     );
   }
   for (let i = 0; i < starData.S.amount; i++) {
     entities.stars.S.instanceNext(
       Math.floor(
-        Math.random() * (gameSize().w - starBounds * globalScale() * 2)
+        Math.random() * (gameSize.w - starBounds * globalScale() * 2)
       ) +
         starBounds * globalScale(),
-      Math.random() * gameSize().h
+      Math.random() * gameSize.h
     );
   }
 
-  mouse.x = gameSize().w / 2.0;
-  mouse.y = gameSize().h / 2.0;
+  mouse.x = gameSize.w / 2.0;
+  mouse.y = gameSize.h / 2.0;
 
   game.ticker.add((delta) => {
     entities.all.forEach((entity) => {
@@ -878,3 +877,5 @@ game.view.addEventListener("pointermove", (e) => {
   mouse.x = e.x;
   mouse.y = e.y;
 });
+
+new ResizeObserver(reflow).observe(gameWindow);

@@ -199,9 +199,6 @@
         });
       }
       expanded = !expanded;
-      setTimeout(() => {
-        reflow(true);
-      }, 600);
     };
 
     let interaction = {
@@ -277,7 +274,6 @@
 
     addEventListener("resize", (e) => {
       syncScroll();
-      reflow(true);
     });
 
     expandButton.addEventListener("click", () => toggleExpand);
