@@ -100,9 +100,6 @@ const starShakeParallax = 0.25;
 const gameOverTimeout = 1000;
 
 let game = new PIXI.Application({ resizeTo: gameWindow, backgroundAlpha: 0 });
-let particleContainer = new PIXI.ParticleContainer(
-  starData.S.amount + starData.M.amount + starData.L.amount
-);
 let entities = {
   all: [],
   player: null,
@@ -293,12 +290,6 @@ class Entity extends GameObject {
   }
 }
 
-class Particle extends GameObject {
-  constructor(sprite) {
-    super(sprite, particleContainer);
-  }
-}
-
 class AnimatedParticle extends GameObject {
   constructor(sprite) {
     super(sprite);
@@ -309,7 +300,7 @@ class AnimatedParticle extends GameObject {
   }
 }
 
-class Star extends Particle {
+class Star extends GameObject {
   #size;
 
   constructor(sprite, size) {
@@ -318,13 +309,13 @@ class Star extends Particle {
     this.shakeParallax = starShakeParallax;
     switch (size) {
       case "L":
-        this.sprite.zIndex = -1;
+        this.sprite.zIndex = -11;
         break;
       case "M":
-        this.sprite.zIndex = -2;
+        this.sprite.zIndex = -12;
         break;
       case "S":
-        this.sprite.zIndex = -3;
+        this.sprite.zIndex = -13;
         break;
     }
   }
@@ -781,8 +772,6 @@ staticSprites.forEach((sprite) => {
 });
 
 PIXI.Loader.shared.load((loader, resources) => {
-  game.stage.addChild(particleContainer);
-  particleContainer.zIndex = -100;
   entities.player = new Player(
     createAnimatedSprite("player", "fly"),
     playerHealth
@@ -820,7 +809,6 @@ PIXI.Loader.shared.load((loader, resources) => {
     return new Star(createStaticSpriteFromSheet("star", "starS"), "S");
   });
   game.stage.sortChildren();
-  particleContainer.sortChildren();
 
   for (let i = 0; i < starData.L.amount; i++) {
     entities.stars.L.instanceNext(
