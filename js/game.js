@@ -39,6 +39,8 @@ const arenaBounds = 8;
 const enemyAdvanceSpeed = 3.5;
 
 const virtualGameWidth = 192;
+const minScale = 2;
+const maxScale = 4;
 
 const maxEnemies = 16;
 const maxPlayerLasers = 32;
@@ -588,7 +590,7 @@ const gameSize = () => {
 };
 
 const globalScale = () => {
-  return Math.max(2, gameSize().w / virtualGameWidth);
+  return Math.min(gameSize().w / virtualGameWidth, maxScale);
 };
 
 const loadFromSpritesheet = (sheetName, resource) => {
@@ -667,6 +669,20 @@ const shakeScreen = (magnitude) => {
     shake.yPoints.push(Math.random() * 2.0 - 1.0);
   }
   shake.amount = 1.0;
+};
+
+const reflow = (force = false) => {
+  if (!gameReady) return;
+  if (force) {
+    setTimeout(() => {
+      game.renderer.resize(gameWindow.clientWidth, gameWindow.clientHeight);
+      entities.player.y = gameSize().h * playerSpawn.y;
+      entities.player.updatePosition();
+    });
+  }
+  entities.all.forEach((entity) => {
+    entity.reflow();
+  });
 };
 
 const showHeader = () => {
@@ -850,22 +866,15 @@ PIXI.Loader.shared.load((loader, resources) => {
   gameReady = true;
 });
 
-addEventListener("resize", (e) => {
-  if (!gameReady) return;
-  entities.all.forEach((entity) => {
-    entity.reflow();
-  });
-});
-
-game.view.addEventListener("mousedown", (e) => {
+game.view.addEventListener("pointerdown", (e) => {
   shooting = true;
 });
 
-game.view.addEventListener("mouseup", (e) => {
+game.view.addEventListener("pointerup", (e) => {
   shooting = false;
 });
 
-game.view.addEventListener("mousemove", (e) => {
+game.view.addEventListener("pointermove", (e) => {
   mouse.x = e.x;
   mouse.y = e.y;
 });
