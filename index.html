@@ -32,14 +32,14 @@
     rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/nu.css">
+  <link rel="stylesheet" href="css/theme.css">
 
   <script type="module" src="js/vendor/model-viewer.min.js"></script>
   <script src="https://pixijs.download/release/pixi.js"></script>
   <meta name="theme-color" content="#F54838">
 </head>
 
-<body class="landing">
+<body>
   <div class="window">
     <section id="intro-window" class="expand">
       <model-viewer src="img/portrait/model.glb" alt="Voxel selfie" loading="eager" shadow-intensity="2"
@@ -73,8 +73,16 @@
         </div>
       </div>
     </section>
+    <div class="window-overlay">
+      <button class="toggle-expand" onclick="toggleExpand();">
+        <span class="expand">⛶</span><span class="restore">✕</span>
+      </button>
+    </div>
   </div>
-  <div class="panel main">
+  <div class="shadow shadow1"></div>
+  <div class="shadow shadow2"></div>
+  <div class="shadow shadow3"></div>
+  <div class="main">
     <header>
       <object class="logo" data="img/logo.svg" type="image/svg+xml" tabindex="-1">
         <img src="img/logo.svg" alt="Anti-Matt-Er logo" role="img" />
@@ -84,8 +92,10 @@
       <section id="intro" tabindex="0">
         <h1>A digital creative enthusiast</h1>
         <p>Hi! I'm Matt from Lancaster, UK. I make things!</p>
-        <p>This is a hand-crafted portfolio of some examples of my professional work and other creative endeavours.</p>
-        <p>The first item I would bring to your attention is the website itself: a bespoke design made with custom html,
+        <p>This is a hand-crafted portfolio of some examples of my professional work and other creative endeavours.
+        </p>
+        <p>The first item I would bring to your attention is the website itself: a bespoke design made with custom
+          html,
           css and javascript.</p>
         <p>Look below for a selection of examples of my professional work and other labours of love.</p>
       </section>
@@ -101,7 +111,8 @@
       </section>
       <section id="cc" tabindex="0">
         <h1>Adobe Suite</h1>
-        <p>From vector icons to photo touch-ups and background removal: I'm adept at Photoshop, Illustrator and the rest
+        <p>From vector icons to photo touch-ups and background removal: I'm adept at Photoshop, Illustrator and the
+          rest
           of Adobe's Creative Cloud.</p>
       </section>
       <section id="game" tabindex="0">
@@ -137,33 +148,149 @@
       </nav>
     </footer>
   </div>
-  <div class="panel shadow1"></div>
-  <div class="panel shadow2"></div>
-  <div class="panel shadow3"></div>
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/game.js"></script>
   <script>
-    const default_portrait_yaw = 0;
-    const default_portrait_pitch = 85.0;
-    const max_portrait_rot = 20.0;
+    const defaultPortraitYaw = 0;
+    const defaultPortraitPitch = 85.0;
+    const maxPortraitRot = 20.0;
+    const portraitTiltStrength = 100;
     const main = document.querySelector("main");
     const hero = document.querySelector(".window");
+    const content = document.querySelector(".main");
+    const shadows = document.querySelectorAll(".shadow");
+    const footer = document.querySelector("footer");
+    const sectionNav = document.querySelector(".section-nav");
     const portrait = document.querySelector("#intro-window>model-viewer");
+    const expandButton = document.querySelector(".toggle-expand");
+    const mainSections = document.querySelectorAll("main>section");
+    const windowSections = Array.from(document.querySelectorAll(".window>section")).reverse();
+    const sectionHeaders = Array.from(document.querySelectorAll("main>section>h1")).reverse();
+    const navButtons = document.querySelectorAll(".section-nav>a");
 
-    window.addEventListener("mousemove", (e) => {
+    let sections = [];
+    navButtons.forEach(button => {
+      sections.push(button.getAttribute("href"));
+    });
+    let expanded = false;
+    let currentSection = sections[0];
+
+    const toggleExpand = () => {
+      if (expanded) {
+        document.body.classList.remove("expand");
+        hero.classList.remove("expand");
+        content.classList.remove("shrink");
+        expandButton.classList.remove("expand");
+        footer.classList.remove("expand");
+        sectionNav.classList.remove("expand");
+        shadows.forEach(shadow => {
+          shadow.classList.remove("shrink");
+        });
+      } else {
+        document.body.classList.add("expand");
+        hero.classList.add("expand");
+        content.classList.add("shrink");
+        expandButton.classList.add("expand");
+        footer.classList.add("expand");
+        sectionNav.classList.add("expand");
+        shadows.forEach(shadow => {
+          shadow.classList.add("shrink");
+        });
+      }
+      expanded = !expanded;
+      setTimeout(() => {
+        reflow(true);
+      }, 600);
+    };
+
+    let interaction = {
+      tilt: false,
+      x: 0,
+      y: 0
+    }
+
+    const tiltPortrait = () => {
       let height = document.documentElement.clientHeight;
       let width = document.documentElement.clientWidth;
       let center_x = portrait.clientWidth / 2.0;
       let center_y = height / 2.0;
-      let yaw = -(e.pageX - center_x) / width * max_portrait_rot + default_portrait_yaw;
-      let pitch = -(e.pageY - center_y) / height * max_portrait_rot + default_portrait_pitch;
+      let yaw = -(interaction.x - center_x) / width * maxPortraitRot + defaultPortraitYaw;
+      let pitch = -(interaction.y - center_y) / height * maxPortraitRot + defaultPortraitPitch;
       portrait.cameraOrbit = yaw.toString() + "deg " + pitch.toString() + "deg 110%";
+    };
+
+    window.addEventListener("mousemove", (e) => {
+      if (interaction.tilt) return;
+      interaction.x = e.pageX;
+      interaction.y = e.pageY;
+      tiltPortrait();
     });
 
-    main.addEventListener("scroll", (e) => {
-      hero.scrollLeft = (main.scrollTop / main.scrollHeight) * hero.scrollWidth;
+    let firstTilt = true;
+    window.addEventListener("devicemotion", (e) => {
+      if (firstTilt) {
+        firstTilt = false;
+        return;
+      }
+      interaction.x = e.accelerationIncludingGravity.x * portraitTiltStrength;
+      interaction.y = e.accelerationIncludingGravity.y * portraitTiltStrength;
+      interaction.tilt = true;
+      tiltPortrait();
     });
+
+    const scrollToSection = (sectionIndex) => {
+      currentSection = sections[sectionIndex];
+      history.pushState(currentSection, "", currentSection);
+      for (const section of windowSections) {
+        let offset = (sectionIndex * 100).toString() + "%";
+        section.style["margin-left"] = "-" + offset;
+        section.style["margin-right"] = offset;
+      }
+    };
+
+    const anchorScrollToSection = (sectionIndex) => {
+      currentSection = sections[sectionIndex];
+      history.pushState(currentSection, "", currentSection);
+      if (expanded) {
+        scrollToSection(sectionIndex);
+        return;
+      }
+      mainSections[sectionIndex].scrollIntoView({
+        behavior: "smooth"
+      });
+    };
+
+    const syncScroll = () => {
+      if (expanded) return;
+      let sectionIndex = sectionHeaders.length - 1;
+      for (const header of sectionHeaders) {
+        if (main.scrollTop + main.clientHeight > header.offsetTop + header.offsetHeight) {
+          scrollToSection(sectionIndex);
+          break;
+        }
+        sectionIndex--;
+      }
+    };
+
+    main.addEventListener("scroll", (e) => syncScroll());
+
+    addEventListener("resize", (e) => {
+      syncScroll();
+      reflow(true);
+    });
+
+    expandButton.addEventListener("click", () => toggleExpand);
+
+    for (let sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
+      document.querySelector('[href="' + sections[sectionIndex] + '"]').addEventListener("click", (e) => {
+        e.preventDefault();
+        anchorScrollToSection(sectionIndex);
+        if (expanded) {
+          location.hash = currentSection;
+        }
+      });
+    }
   </script>
 </body>
 
