@@ -31,9 +31,10 @@ const enemyOrbOffset = {
   y: 6,
 };
 const playerLaserVelocity = -6;
-const enemyOrbSpeed = 7;
-const playerMaxVelocity = 6;
-const playerAcceleration = 0.2;
+const enemyOrbSpeed = 6;
+const playerMaxVelocity = 10;
+const playerAcceleration = 0.5;
+const playerDecceleration = 0.8;
 const arenaBounds = 8;
 
 const enemyAdvanceSpeed = 3.5;
@@ -48,10 +49,10 @@ const maxEnemyOrbs = 128;
 const maxHitParticles = 512;
 
 const playerHealth = 100;
-const enemyHealth = 30;
+const enemyHealth = 20;
 
 const playerLaserDamage = 10;
-const enemyOrbDamage = 10;
+const enemyOrbDamage = 5;
 
 const enemyFireRate = 1000; //Change to variable and decrease with difficulty later
 const enemySpawnTick = 1200;
@@ -64,8 +65,8 @@ const particleAnimationSpeed = 0.5;
 
 const shootCooldown = 350;
 
-const hitParticleAmount = 8;
-const hitParticleSpeed = 2;
+const hitParticleAmount = 12;
+const hitParticleSpeed = 2.5;
 
 const frameTime = 1 / 60;
 
@@ -419,10 +420,9 @@ class Ordnance extends Entity {
     for (let i = 0; i < hitParticleAmount; i++) {
       let particle = entities.hitParticles.instanceNext(this.x, this.y);
       let angle = Math.random() * Math.PI * 2.0;
-      particle.setVelocity(
-        Math.cos(angle) * hitParticleSpeed * globalScale(),
-        Math.sin(angle) * hitParticleSpeed * globalScale()
-      );
+      let speed =
+        hitParticleSpeed * globalScale() * (Math.random() * 0.5 + 0.5);
+      particle.setVelocity(Math.cos(angle) * speed, Math.sin(angle) * speed);
     }
   }
 
@@ -496,13 +496,14 @@ class Player extends Character {
 
   moveToMouse() {
     if (!gameRunning) return;
-    let delta = this.sprite.x - mouse.x;
-    if (delta < -playerMaxVelocity) {
-      this.accelerate(playerAcceleration * 2, 0, playerMaxVelocity);
-    } else if (delta > playerMaxVelocity) {
-      this.accelerate(-playerAcceleration * 2, 0, playerMaxVelocity);
+    let delta = mouse.x - this.x;
+    if (delta > playerMaxVelocity * globalScale()) {
+      this.accelerate(playerAcceleration, 0, playerMaxVelocity);
+    } else if (delta < -playerMaxVelocity * globalScale()) {
+      this.accelerate(-playerAcceleration, 0, playerMaxVelocity);
+    } else {
+      this.decelerate(playerDecceleration);
     }
-    this.decelerate(playerAcceleration);
   }
 
   loop(delta) {
