@@ -67,8 +67,10 @@
         <button class="game-start game-play-button" onclick="startGame();">Play</button>
         <div class="game-over hidden">
           <span class="game-over-message">GAME OVER!</span>
-          <span class="game-over-score">Score: <span class="game-score-value">0</span></span>
-          <span class="game-hi-score">High Score: <span class="game-hi-score-value">0</span></span>
+          <div class="game-score-container">
+            <span class="game-over-score">Score: <span class="game-score-value">0</span></span>
+            <span class="game-hi-score">High Score: <span class="game-hi-score-value">0</span></span>
+          </div>
           <button class="game-play-button" onclick="startGame();">Play Again</button>
         </div>
       </div>

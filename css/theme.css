@@ -326,7 +326,9 @@ h1:after {
   padding-top: 0.25rem;
 }
 .game-score > .game-score-value {
+  display: inline-block;
   padding-left: 0.25em;
+  width: 5rem;
 }
 
 .game-score-value {
@@ -338,6 +340,7 @@ h1:after {
   flex-grow: 1;
   flex-shrink: 0;
   min-width: 10rem;
+  max-width: 30rem;
   height: 3rem;
   border: 0.45rem solid #EDF2F7;
   border-radius: 3rem;
@@ -360,6 +363,9 @@ h1:after {
   height: 100%;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
   transition: opacity 0.5s ease;
 }
 
@@ -372,18 +378,22 @@ h1:after {
 
 .game-over-message {
   font-size: 1.5em;
+  line-height: 100%;
+}
+
+.game-score-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .game-over-score {
   font-size: 0.75em;
   color: #F54838;
-  margin-bottom: 1rem;
 }
 
 .game-hi-score {
   font-size: 0.5em;
   color: #F54838;
-  margin-bottom: 2rem;
 }
 
 .game-hi-score-value {
@@ -391,16 +401,22 @@ h1:after {
 }
 
 .game-play-button {
-  padding: 0 1em;
+  padding: 0 0.5em;
   background: #F54838;
   color: #EDF2F7;
   border: 0.4rem solid #EDF2F7;
   border-radius: 1rem;
+  white-space: nowrap;
+  margin-top: 0.35em;
   transition: background 0.5s ease;
 }
 
 .game-play-button:hover {
   background: #376480;
+}
+
+.game-start {
+  padding: 0 1em;
 }
 
 header {
