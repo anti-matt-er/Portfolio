@@ -264,7 +264,7 @@
       if (expanded) return;
       let sectionIndex = sectionHeaders.length - 1;
       for (const header of sectionHeaders) {
-        if (main.scrollTop + main.clientHeight > header.offsetTop + header.offsetHeight) {
+        if (main.scrollTop + main.clientHeight > header.offsetTop) {
           scrollToSection(sectionIndex);
           break;
         }
