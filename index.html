@@ -46,15 +46,6 @@
         camera-orbit="0deg 90deg 100%" camera-target="auto auto -0.35m" environment-image="img/portrait/studio.hdr">
       </model-viewer>
     </section>
-    <section id="branding-window">
-      <img src="img/logos.png" class="hero" alt="Logo Examples" />
-    </section>
-    <section id="print-window">
-      <img src="img/print.png" class="hero" alt="Print examples" />
-    </section>
-    <section id="cc-window">
-      <img src="img/CC.png" class="hero" alt="Adobe suite demonstration" />
-    </section>
     <section id="game-window" class="expand">
       <div class="game-header">
         <div class="game-score">SCORE: <span class="game-score-value">0</span></div>
@@ -74,6 +65,17 @@
           <button class="game-play-button" onclick="startGame();">Play Again</button>
         </div>
       </div>
+    </section>
+    <section id="print-window" class="expand">
+      <model-viewer src="img/mirabeau.glb" class="booklet" alt="Mirabeau Bridge Album Booklet" loading="eager"
+        animation-name="Open1" animation-crossfade-duration="0" shadow-intensity="2" camera-orbit="0deg 90deg 100%"
+        max-camera-orbit="auto auto auto">
+    </section>
+    <section id="branding-window">
+      <img src="img/logos.png" class="hero" alt="Logo Examples" />
+    </section>
+    <section id="music-window">
+      <img src="img/CC.png" class="hero" alt="Adobe suite demonstration" />
     </section>
     <div class="window-overlay">
       <button class="toggle-expand" onclick="toggleExpand();">
@@ -190,11 +192,30 @@
     const footer = document.querySelector("footer");
     const sectionNav = document.querySelector(".section-nav");
     const portrait = document.querySelector("#intro-window>model-viewer");
+    const booklet = document.querySelector(".booklet");
     const expandButton = document.querySelector(".toggle-expand");
     const mainSections = document.querySelectorAll("main>section");
     const windowSections = Array.from(document.querySelectorAll(".window>section")).reverse();
     const sectionHeaders = Array.from(document.querySelectorAll("main>section>h1")).reverse();
     const navButtons = document.querySelectorAll(".section-nav>a");
+
+    const bookletAnimations = [
+      'Open1',
+      'Open2',
+      'Open3',
+      'Open4',
+      'Open5',
+      'Open6',
+      'Open7',
+      'Open8',
+      'Open9',
+      'Open10',
+      'Open11',
+      'Close',
+      'Flip'
+    ];
+    const bookletFlipDuration = 1.25;
+    let bookletIndex = bookletAnimations.length - 1;
 
     let sections = [];
     navButtons.forEach(button => {
@@ -202,6 +223,10 @@
     });
     let expanded = false;
     let currentSection = sections[0];
+
+    const mod = (n, m) => {
+      return ((n % m) + m) % m;
+    }
 
     const toggleExpand = () => {
       if (expanded) {
@@ -241,8 +266,51 @@
       let center_y = height / 2.0;
       let yaw = -(interaction.x - center_x) / width * maxPortraitRot + defaultPortraitYaw;
       let pitch = -(interaction.y - center_y) / height * maxPortraitRot + defaultPortraitPitch;
-      portrait.cameraOrbit = yaw.toString() + "deg " + pitch.toString() + "deg 110%";
+      let orbit = yaw.toString() + "deg " + pitch.toString() + "deg 110%";
+      portrait.cameraOrbit = orbit;
+      booklet.cameraOrbit = orbit;
     };
+
+    let bookFlipBackwards = false;
+    let bookFlipOffset = 0;
+    let bookCanFlip = true;
+    const queueNextBookletAnimation = () => {
+      bookletDirection = bookFlipBackwards ? -1 : 1;
+      bookletIndex = mod(bookletIndex + bookletDirection + bookFlipOffset, bookletAnimations.length);
+      if (bookFlipBackwards) {
+        booklet.animationName = bookletAnimations[bookletIndex] + "R";
+      } else {
+        booklet.animationName = bookletAnimations[bookletIndex];
+      }
+      booklet.currentTime = 0;
+    }
+
+    const flipBooklet = (backwards = false) => {
+      if (!bookCanFlip) return;
+      bookCanFlip = false;
+      if (bookFlipBackwards && !backwards) {
+        bookFlipOffset = -1;
+      } else if (!bookFlipBackwards && backwards) {
+        bookFlipOffset = 1;
+      } else {
+        bookFlipOffset = 0;
+      }
+      bookFlipBackwards = backwards;
+      queueNextBookletAnimation();
+      booklet.play();
+    }
+
+    booklet.addEventListener("click", (e) => {
+      flipBooklet(e.clientX < booklet.clientWidth / 2.0);
+    });
+
+    booklet.addEventListener("play", (e) => {
+      setTimeout(() => {
+        booklet.pause();
+        booklet.currentTime = bookletFlipDuration;
+        bookCanFlip = true;
+      }, bookletFlipDuration * 1000);
+    });
 
     window.addEventListener("mousemove", (e) => {
       if (interaction.tilt) return;
