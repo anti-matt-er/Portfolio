@@ -585,8 +585,8 @@ footer::before {
   height: 2rem;
 }
 .section-nav > a > img {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   margin: auto;
   transition: width 0.5s ease,height 0.5s ease;
 }
@@ -605,11 +605,24 @@ footer::before {
   transition: right 0.5s ease,margin-right 0.5s ease;
 }
 
+.icon-default,
+.icon-hover {
+  display: block;
+  width: 1em;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.icon-hover {
+  position: relative;
+  top: -1em;
+  opacity: 0;
+}
+
 .toggle-expand {
-  margin: 0.5rem;
+  margin: 1rem;
   background: transparent;
-  font-size: 3rem;
-  color: #EDF2F7;
+  font-size: 2rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
@@ -623,8 +636,11 @@ footer::before {
 .toggle-expand.expand > .restore {
   display: inline;
 }
-.toggle-expand:hover {
-  color: #F54838;
+.toggle-expand:hover > span > .icon-default {
+  opacity: 0;
+}
+.toggle-expand:hover > span > .icon-hover {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=theme.css.map */
