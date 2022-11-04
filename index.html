@@ -42,8 +42,8 @@
 <body>
   <div class="window">
     <section id="intro-window" class="expand">
-      <model-viewer src="img/portrait/model.glb" alt="Voxel selfie" loading="eager" shadow-intensity="2"
-        camera-orbit="0deg 90deg 100%" camera-target="auto auto -0.35m" environment-image="img/portrait/studio.hdr">
+      <model-viewer src="img/portrait/model.glb" class="portrait" alt="Voxel selfie" loading="eager"
+        shadow-intensity="2" camera-orbit="0deg 90deg 100%" camera-target="auto auto -0.35m">
       </model-viewer>
     </section>
     <section id="game-window" class="expand">
@@ -191,7 +191,7 @@
     const shadows = document.querySelectorAll(".shadow");
     const footer = document.querySelector("footer");
     const sectionNav = document.querySelector(".section-nav");
-    const portrait = document.querySelector("#intro-window>model-viewer");
+    const portrait = document.querySelector(".portrait");
     const booklet = document.querySelector(".booklet");
     const expandButton = document.querySelector(".toggle-expand");
     const mainSections = document.querySelectorAll("main>section");
