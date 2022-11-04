@@ -254,7 +254,6 @@
     };
 
     let interaction = {
-      tilt: false,
       x: 0,
       y: 0
     }
@@ -313,21 +312,14 @@
     });
 
     window.addEventListener("mousemove", (e) => {
-      if (interaction.tilt) return;
       interaction.x = e.pageX;
       interaction.y = e.pageY;
       tiltPortrait();
     });
 
-    let firstTilt = true;
     window.addEventListener("devicemotion", (e) => {
-      if (firstTilt) {
-        firstTilt = false;
-        return;
-      }
       interaction.x = e.accelerationIncludingGravity.x * portraitTiltStrength;
       interaction.y = e.accelerationIncludingGravity.y * portraitTiltStrength;
-      interaction.tilt = true;
       tiltPortrait();
     });
 
