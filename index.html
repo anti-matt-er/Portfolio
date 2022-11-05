@@ -28,11 +28,11 @@
   <meta name="msapplication-TileColor" content="#00aba9">
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400&family=Jost&family=Rajdhani:wght@600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400&family=Jost:wght@300;400&family=Rajdhani:wght@600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/theme.css?doit2">
 
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="https://pixijs.download/release/pixi.js"></script>
@@ -74,11 +74,66 @@
     <section id="branding-window">
       <img src="img/logos.png" class="hero" alt="Logo Examples" />
     </section>
-    <section id="music-window">
-      <img src="img/CC.png" class="hero" alt="Adobe suite demonstration" />
+    <section id="music-window" class="expand">
+      <div class="music-album-art">
+        <div><img src="img/albumart/rendezvous.jpg" alt="Album Art for Rendezvous" /></div>
+        <div><img src="img/albumart/behindthesun.jpg" alt="Album Art for Behind the Sun" /></div>
+        <div><img src="img/albumart/somarain.jpg" alt="Album Art for Soma Rain" /></div>
+        <div><img src="img/albumart/behindglass.jpg" alt="Album Art for Behind Glass" /></div>
+      </div>
+      <div class="music-seeker">
+        <div class="music-seeker-bar">
+          <div class="music-seeker-bar-bg"></div>
+          <div class="music-seeker-progress">
+            <div class="music-seeker-handle"></div>
+          </div>
+        </div>
+        <div class="music-seeker-times">
+          <div class="music-seeker-timestamp">0:00</div>
+          <div class="music-seeker-duration">0:00</div>
+        </div>
+      </div>
+      <div class="music-track-info">
+        <div>
+          <div class="music-artist-name">After The Zenith</div>
+          <div class="music-song-name">Rendezvous</div>
+        </div>
+        <div>
+          <div class="music-artist-name">After The Zenith</div>
+          <div class="music-song-name">Behind the Sun</div>
+        </div>
+        <div>
+          <div class="music-artist-name">After The Zenith</div>
+          <div class="music-song-name">Soma Rain</div>
+        </div>
+        <div>
+          <div class="music-artist-name">After The Zenith</div>
+          <div class="music-song-name">Behind Glass</div>
+        </div>
+      </div>
+      <div class="music-interface">
+        <button class="music-previous-button icon-button">
+          <img src="img/icons/previous.svg" class="icon-default" alt="Previous track icon" role="img">
+          <img src="img/icons/previous-hover.svg" class="icon-hover" alt="Previous track icon" role="img">
+        </button>
+        <button class="music-play-button icon-button">
+          <span class="paused">
+            <img src="img/icons/play.svg" class="icon-default" alt="Play track icon" role="img">
+            <img src="img/icons/play-hover.svg" class="icon-hover" alt="Play track icon" role="img">
+          </span>
+          <span class="playing hidden">
+            <img src="img/icons/pause.svg" class="icon-default" alt="Pause track icon" role="img">
+            <img src="img/icons/pause-hover.svg" class="icon-hover" alt="Pause track icon" role="img">
+          </span>
+        </button>
+        <button class="music-next-button icon-button">
+          <img src="img/icons/next.svg" class="icon-default" alt="Next track icon" role="img">
+          <img src="img/icons/next-hover.svg" class="icon-hover" alt="Next track icon" role="img">
+        </button>
+      </div>
     </section>
     <div class="window-overlay">
-      <button class="toggle-expand" onclick="toggleExpand();">
+      <button class="toggle-expand icon-button" onclick="toggleExpand();">
         <span class="expand">
           <img src="img/icons/expand.svg" class="icon-default" alt="Expand window icon" role="img">
           <img src="img/icons/expand-hover.svg" class="icon-hover" alt="Expand window icon" role="img">
@@ -198,6 +253,167 @@
     const windowSections = Array.from(document.querySelectorAll(".window>section")).reverse();
     const sectionHeaders = Array.from(document.querySelectorAll("main>section>h1")).reverse();
     const navButtons = document.querySelectorAll(".section-nav>a");
+    const musicPlayer = {
+      trackCount: 4,
+      tick: 100,
+      play: document.querySelector(".music-play-button"),
+      previous: document.querySelector(".music-previous-button"),
+      next: document.querySelector(".music-next-button"),
+      seeker: document.querySelector(".music-seeker-bar"),
+      progress: document.querySelector(".music-seeker-progress"),
+      timestamp: document.querySelector(".music-seeker-timestamp"),
+      duration: document.querySelector(".music-seeker-duration"),
+      covers: document.querySelectorAll(".music-album-art>div"),
+      trackNames: document.querySelectorAll(".music-track-info>div"),
+      playingIcon: document.querySelector(".music-play-button>.playing"),
+      pausedIcon: document.querySelector(".music-play-button>.paused")
+    };
+
+    const mod = (n, m) => {
+      return ((n % m) + m) % m;
+    };
+
+    let trackIndex = 0;
+    let tracks = [
+      {
+        file: "rendezvous",
+        audio: null,
+        length: 0
+      },
+      {
+        file: "behindthesun",
+        audio: null,
+        length: 0
+      },
+      {
+        file: "somarain",
+        audio: null,
+        length: 0
+      },
+      {
+        file: "behindglass",
+        audio: null,
+        length: 0
+      }
+    ];
+    let musicTicker;
+    let seek = 0;
+    let loadedTracks = 0;
+    let allTracksLoaded = false;
+    let musicHandleGrabbed = false;
+    let playing = false;
+
+    tracks.forEach(track => {
+      track.audio = new Audio("music/" + track.file + ".mp3");
+      track.audio.addEventListener("loadeddata", () => {
+        track.length = track.audio.duration;
+        loadedTracks++;
+        if (loadedTracks === musicPlayer.trackCount) {
+          allTracksLoaded = true;
+          updateSeeker();
+        }
+      });
+      track.audio.addEventListener("ended", () => {
+        chooseTrack(1);
+      });
+    });
+
+    const chooseTrack = (trackOffset) => {
+      if (!allTracksLoaded) return;
+      if (playing) {
+        tracks[trackIndex].audio.pause();
+      }
+      trackIndex = mod(trackIndex + trackOffset, musicPlayer.trackCount);
+      seek = 0;
+      tracks[trackIndex].audio.currentTime = 0;
+      if (playing) {
+        tracks[trackIndex].audio.play();
+      }
+      updateSeeker();
+      updateTicker();
+      for (let i = 0; i < musicPlayer.trackCount; i++) {
+        let offset = (trackIndex * 100).toString() + "%";
+        musicPlayer.covers[i].style["margin-left"] = "-" + offset;
+        musicPlayer.covers[i].style["margin-right"] = offset;
+        musicPlayer.trackNames[i].style["margin-left"] = "-" + offset;
+        musicPlayer.trackNames[i].style["margin-right"] = offset;
+      }
+    };
+
+    const secondsToMinutesString = (seconds) => {
+      let minutes = Math.floor(seconds / 60.0);
+      seconds = mod(seconds, 60);
+      return minutes.toString() + ":" + (new Array(3).join("0") + Math.floor(seconds).toString()).slice(-2);
+    };
+
+    const updateSeeker = () => {
+      if (!tracks[trackIndex].length) return;
+      musicPlayer.progress.style.width = (seek * 100).toString() + "%";
+      musicPlayer.timestamp.innerHTML = secondsToMinutesString(tracks[trackIndex].length * seek);
+      musicPlayer.duration.innerHTML = secondsToMinutesString(tracks[trackIndex].length);
+    };
+
+    const updateTicker = () => {
+      if (playing) {
+        musicTicker = setInterval(() => {
+          if (!musicHandleGrabbed) {
+            seek = tracks[trackIndex].audio.currentTime / tracks[trackIndex].length;
+            updateSeeker();
+          }
+        }, musicPlayer.tick);
+      } else if (musicTicker !== undefined) {
+        clearInterval(musicTicker);
+      }
+    };
+
+    const seekToX = (x) => {
+      seek = (x - musicPlayer.seeker.offsetLeft) / musicPlayer.seeker.clientWidth;
+      seek = Math.max(0, Math.min(seek, 1));
+      updateSeeker();
+      updateTicker();
+    }
+
+    musicPlayer.next.addEventListener("click", () => {
+      chooseTrack(1);
+    });
+
+    musicPlayer.previous.addEventListener("click", () => {
+      chooseTrack(-1);
+    });
+
+    musicPlayer.play.addEventListener("click", () => {
+      if (!allTracksLoaded) return;
+      if (playing) {
+        tracks[trackIndex].audio.pause();
+        musicPlayer.playingIcon.classList.add("hidden");
+        musicPlayer.pausedIcon.classList.remove("hidden");
+      }
+      else {
+        tracks[trackIndex].audio.play();
+        musicPlayer.playingIcon.classList.remove("hidden");
+        musicPlayer.pausedIcon.classList.add("hidden");
+      }
+      playing = !playing;
+      updateTicker();
+    });
+
+    musicPlayer.seeker.addEventListener("pointerdown", (e) => {
+      if (!allTracksLoaded) return;
+      musicHandleGrabbed = true;
+      seekToX(e.x);
+    });
+
+    addEventListener("pointerup", () => {
+      if (!musicHandleGrabbed) return;
+      musicHandleGrabbed = false;
+      tracks[trackIndex].audio.currentTime = tracks[trackIndex].length * seek;
+      updateTicker();
+    });
+
+    addEventListener("pointermove", (e) => {
+      if (!musicHandleGrabbed) return;
+      seekToX(e.x);
+    });
 
     const bookletAnimations = [
       'Open1',
@@ -223,10 +439,6 @@
     });
     let expanded = false;
     let currentSection = sections[0];
-
-    const mod = (n, m) => {
-      return ((n % m) + m) % m;
-    }
 
     const toggleExpand = () => {
       if (expanded) {
