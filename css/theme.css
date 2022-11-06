@@ -419,6 +419,77 @@ h1:after {
   padding: 0 1em;
 }
 
+#branding-window {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  flex-direction: column;
+}
+
+@media screen and (orientation: portrait) {
+  .window:not(.expand) > #branding-window {
+    flex-direction: row;
+  }
+  .window:not(.expand) > #branding-window > .branding-top, .window:not(.expand) > #branding-window > .branding-hero, .window:not(.expand) > #branding-window > .branding-bottom {
+    flex: 1 1;
+    margin: 0;
+  }
+  .window:not(.expand) > #branding-window .spacer-logo {
+    transform: none;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .window.expand > #branding-window {
+    flex-direction: row;
+  }
+  .window.expand > #branding-window > .branding-top, .window.expand > #branding-window > .branding-hero, .window.expand > #branding-window > .branding-bottom {
+    flex: 1 1;
+    margin: 0;
+  }
+  .window.expand > #branding-window .spacer-logo {
+    transform: none;
+  }
+}
+
+.branding-top,
+.branding-hero,
+.branding-bottom {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+.branding-top > img,
+.branding-hero > img,
+.branding-bottom > img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.branding-top,
+.branding-bottom {
+  flex: 1 2;
+  margin: 2rem 0;
+}
+.branding-top > img,
+.branding-bottom > img {
+  max-width: 50%;
+}
+
+.branding-hero {
+  flex: 2 1;
+}
+
+.spacer-logo {
+  transform: scale(125%);
+}
+
 #music-window {
   display: flex;
   position: relative;
