@@ -100,6 +100,7 @@ const starShakeParallax = 0.25;
 const gameOverTimeout = 1000;
 
 let game = new PIXI.Application({ resizeTo: gameWindow, backgroundAlpha: 0 });
+let assets = {};
 let entities = {
   all: [],
   player: null,
@@ -584,7 +585,7 @@ const globalScale = () => {
 };
 
 const loadFromSpritesheet = (sheetName, resource) => {
-  return PIXI.Loader.shared.resources[sheetName].spritesheet[resource];
+  return assets[sheetName][resource];
 };
 
 const createAnimatedSprite = (sheetName, animation) => {
@@ -598,7 +599,7 @@ const createStaticSpriteFromSheet = (sheetName, texture) => {
 };
 
 const createStaticSprite = (name) => {
-  return new PIXI.Sprite(PIXI.Loader.shared.resources[name].texture);
+  return new PIXI.Sprite(assets[name]);
 };
 
 const vectorMagnitudeSquared = (vector) => {
@@ -763,15 +764,17 @@ const gameOver = () => {
   hideHeader();
 };
 
-spritesheets.forEach((sheet) => {
-  PIXI.Loader.shared.add(sheet, spritePath + sheet + ".json");
-});
+async function loadAssets() {
+  for (const sheet of spritesheets) {
+    assets[sheet] = await PIXI.Assets.load(spritePath + sheet + ".json");
+  }
 
-staticSprites.forEach((sprite) => {
-  PIXI.Loader.shared.add(sprite, spritePath + sprite + ".png");
-});
+  for (const sprite of staticSprites) {
+    assets[sprite] = await PIXI.Assets.load(spritePath + sprite + ".json");
+  }
+}
 
-PIXI.Loader.shared.load((loader, resources) => {
+const loadGame = () => {
   entities.player = new Player(
     createAnimatedSprite("player", "fly"),
     playerHealth
@@ -852,7 +855,7 @@ PIXI.Loader.shared.load((loader, resources) => {
   spawnPlayer();
 
   gameReady = true;
-});
+};
 
 game.view.addEventListener("pointerdown", (e) => {
   shooting = true;
@@ -868,3 +871,8 @@ game.view.addEventListener("pointermove", (e) => {
 });
 
 new ResizeObserver(reflow).observe(gameWindow);
+
+const loader = loadAssets();
+loader.then(() => {
+  loadGame();
+});
