@@ -155,40 +155,6 @@ h1:after {
   padding: 3rem;
   transition: padding 0.5s ease,margin-left 0.5s ease,margin-right 0.5s ease;
 }
-.window > section a,
-.window > section a:visited,
-.window > section a:active,
-.window > section .text-button {
-  display: inline-block;
-  position: relative;
-  color: #F54838;
-  text-decoration: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-}
-.window > section a::after,
-.window > section a:visited::after,
-.window > section a:active::after,
-.window > section .text-button::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  margin: auto;
-  width: 0;
-  left: 50%;
-  height: 0.1em;
-  background: #B0C3CF;
-  border-radius: 0.1em;
-  transition: width 0.25s ease, left 0.25s ease;
-}
-.window > section a:hover::after,
-.window > section .text-button:hover::after,
-.window > section a:focus::after,
-.window > section .text-button:focus::after {
-  left: 0;
-  width: 100%;
-}
 .window > section.expand, .window > section.expand-full {
   padding: 0;
 }
@@ -727,6 +693,20 @@ header::after {
     height: 7.5rem;
   }
 }
+@media screen and (orientation: portrait) and (max-width: 350px) {
+  header button.contact-button {
+    position: absolute;
+    border: 0.25rem solid #EDF2F7;
+    margin: -0.25rem;
+  }
+}
+@media screen and (orientation: landscape) and (max-width: 905px) {
+  header button.contact-button {
+    position: absolute;
+    border: 0.25rem solid #EDF2F7;
+    margin: -0.25rem;
+  }
+}
 
 .header-content {
   display: flex;
@@ -739,23 +719,6 @@ header::after {
 }
 .header-content > .header-right {
   text-align: right;
-}
-.header-content button:not(.icon-button) {
-  display: inline-block;
-  font-size: 1.5rem;
-  line-height: 1;
-  padding: 0.5rem 2rem;
-  border-radius: 1rem;
-  border: 0;
-  background: #F54838;
-  color: #EDF2F7;
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-}
-.header-content button:not(.icon-button):hover {
-  background: #376480;
 }
 
 main {
@@ -781,6 +744,40 @@ main > section {
 }
 main > section p {
   line-height: 1.75em;
+}
+main > section p a,
+main > section p a:visited,
+main > section p a:active,
+main > section p .text-button {
+  display: inline-block;
+  position: relative;
+  color: #F54838;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+main > section p a::after,
+main > section p a:visited::after,
+main > section p a:active::after,
+main > section p .text-button::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 0;
+  left: 50%;
+  height: 0.1em;
+  background: #B0C3CF;
+  border-radius: 0.1em;
+  transition: width 0.25s ease, left 0.25s ease;
+}
+main > section p a:hover::after,
+main > section p .text-button:hover::after,
+main > section p a:focus::after,
+main > section p .text-button:focus::after {
+  left: 0;
+  width: 100%;
 }
 
 footer {
@@ -946,14 +943,17 @@ footer::before {
   text-align: center;
 }
 .contact-form > form button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border-radius: 1rem;
-  padding: 0.25rem 3rem;
   font-size: 1.25em;
   background: #F54838;
   color: #EDF2F7;
   cursor: pointer;
   transition: background-color 0.5s ease;
+}
+.contact-form > form button > span {
+  padding: 0.25rem 1.5rem;
 }
 .contact-form > form button:hover {
   background: #376480;
@@ -1109,6 +1109,50 @@ footer::before {
   .toggle-expand-content {
     display: none;
   }
+}
+
+button.contact-button {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 2rem;
+  border: 0;
+  background: #F54838;
+  color: #EDF2F7;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+@media screen and (orientation: portrait) and (max-width: 460px) {
+  button.contact-button {
+    font-size: 1rem;
+  }
+}
+button.contact-button > span {
+  padding: 0.5rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+button.contact-button:hover {
+  background: #376480;
+}
+
+button.contact-button::before,
+.contact-form > form > button::before {
+  content: url("../img/icons/hire.svg");
+  display: block;
+  width: 2em;
+  margin: 0.2rem 0.25em -0.2rem;
+}
+
+a.contact-button::before {
+  content: url("../img/icons/hire-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.25em;
+  width: 1.25em;
+  margin-right: 0.25em;
 }
 
 /*# sourceMappingURL=theme.css.map */

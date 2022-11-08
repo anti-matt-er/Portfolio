@@ -163,7 +163,7 @@
     <header>
       <div class="header-content">
         <div class="header-left">
-          <button class="contact-button">Hire me!</button>
+          <button class="contact-button"><span>Hire me!</span></button>
         </div>
         <img src="img/logo.svg" class="logo" alt="Anti-Matt-Er logo" role="img" />
         <div class="header-right">
@@ -248,7 +248,7 @@
               Tell me about your project!
               <textarea name="message" required></textarea>
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit"><span>Submit</span></button>
           </form>
           <aside>
             <h1>Or say hi!</h1>
@@ -326,7 +326,7 @@
     const sectionAnchors = Array.from(document.querySelectorAll(".section-anchor")).reverse();
     const header = document.querySelector("header");
     const navButtons = document.querySelectorAll(".section-nav>a");
-    const contactButton = document.querySelector(".contact-button");
+    const contactButtons = document.querySelectorAll(".contact-button");
     const emailLink = document.querySelector(".contact-email");
     const contentExpandCooldown = 1000;
     const musicPlayer = {
@@ -704,7 +704,9 @@
       registerScrollButton(button, sectionIndex);
       sectionIndex++;
     };
-    registerScrollButton(contactButton, sectionIndex);
+    for (const button of contactButtons) {
+      registerScrollButton(button, sectionIndex);
+    }
 
     const mailDecrypter = (piece) => {
       return
