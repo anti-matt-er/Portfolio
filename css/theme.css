@@ -725,7 +725,23 @@ main {
   height: 100%;
   padding: 0 4rem;
   overflow-y: auto;
+  scrollbar-color: #B0C3CF transparent;
   transition: padding 0.5s ease;
+}
+main::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.25rem;
+}
+main::-webkit-scrollbar-thumb {
+  background: #B0C3CF;
+  border-radius: 0.75rem;
+}
+main::-webkit-scrollbar-thumb:hover {
+  background: #F54838;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
 }
 @media screen and (orientation: portrait) {
   main {
