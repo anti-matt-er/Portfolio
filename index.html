@@ -161,13 +161,28 @@
   <div class="shadow shadow3"></div>
   <div class="main">
     <header>
-      <object class="logo" data="img/logo.svg" type="image/svg+xml" tabindex="-1">
-        <img src="img/logo.svg" alt="Anti-Matt-Er logo" role="img" />
-      </object>
+      <div class="header-content">
+        <div class="header-left">
+          <button class="contact-button">Hire me!</button>
+        </div>
+        <img src="img/logo.svg" class="logo" alt="Anti-Matt-Er logo" role="img" />
+        <div class="header-right">
+          <button class="toggle-expand-content icon-button" onclick="toggleExpandContent(true);">
+            <span class="expand">
+              <img src="img/icons/expand-dark.svg" class="icon-default" alt="Expand content icon" role="img">
+              <img src="img/icons/expand-hover.svg" class="icon-hover" alt="Expand content icon" role="img">
+            </span>
+            <span class="restore">
+              <img src="img/icons/restore-dark.svg" class="icon-default" alt="Restore content icon" role="img">
+              <img src="img/icons/restore-hover.svg" class="icon-hover" alt="Restore content icon" role="img">
+            </span>
+          </button>
+        </div>
+      </div>
     </header>
     <main>
       <section id="intro" tabindex="0">
-        <h1>A Digital Creative Enthusiast</h1>
+        <h1 class="section-anchor">A Digital Creative Enthusiast</h1>
         <p>Hi! I'm Matt from Lancaster, UK. I make things!</p>
         <p>This is a hand-crafted portfolio of some examples of my professional work and other creative endeavours.
         </p>
@@ -177,7 +192,7 @@
         <p>Look below for a selection of examples of my professional work and other labours of love.</p>
       </section>
       <section id="game" tabindex="0">
-        <h1>Game Design, Development &amp; Game-Ready Assets</h1>
+        <h1 class="section-anchor">Game Design, Development &amp; Game-Ready Assets</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Tempus urna et pharetra pharetra massa massa ultricies mi. Placerat in egestas erat imperdiet
           sed euismod nisi. A pellentesque sit amet porttitor eget dolor. Cras pulvinar mattis nunc sed blandit libero
@@ -188,7 +203,7 @@
           Euismod quis viverra nibh cras pulvinar mattis.</p>
       </section>
       <section id="print" tabindex="0">
-        <h1>High-Quality Print Media</h1>
+        <h1 class="section-anchor">High-Quality Print Media</h1>
         <p>Elementum integer enim neque volutpat ac. Mattis aliquam faucibus purus in massa tempor nec feugiat nisl.
           Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis. A lacus vestibulum sed arcu non. Diam
           quam nulla porttitor massa id neque aliquam vestibulum morbi. Interdum posuere lorem ipsum dolor sit amet.
@@ -199,7 +214,7 @@
           ornare quam. Purus faucibus ornare suspendisse sed. Tincidunt arcu non sodales neque sodales.</p>
       </section>
       <section id="branding" tabindex="0">
-        <h1>Eyecatching Branding &amp; Logos</h1>
+        <h1 class="section-anchor">Eyecatching Branding &amp; Logos</h1>
         <p>Quis enim lobortis scelerisque fermentum dui faucibus in. Consectetur adipiscing elit duis tristique
           sollicitudin. Massa massa ultricies mi quis hendrerit dolor. Odio pellentesque diam volutpat commodo sed
           egestas egestas. In cursus turpis massa tincidunt. Nunc mattis enim ut tellus elementum. Velit scelerisque in
@@ -208,14 +223,59 @@
           aliquet nec ullamcorper sit. Arcu risus quis varius quam quisque id diam vel quam. Ac turpis egestas maecenas
           pharetra convallis posuere morbi leo. Nec feugiat in fermentum posuere urna nec tincidunt.</p>
       </section>
-      <section id="music" tabindex="0">
-        <h1>Music You Can't Get Enough Of</h1>
+      <section id="music" class="last-section" tabindex="0">
+        <h1 class="section-anchor">Music You Can't Get Enough Of</h1>
         <p>Vitae tortor condimentum lacinia quis vel eros donec ac odio. Tellus integer feugiat scelerisque varius morbi
           enim nunc faucibus a. Tempus iaculis urna id volutpat lacus. Accumsan lacus vel facilisis volutpat est velit
           egestas dui. Euismod elementum nisi quis eleifend quam adipiscing vitae. Facilisi cras fermentum odio eu
           feugiat pretium. Odio tempor orci dapibus ultrices in iaculis nunc sed. In nulla posuere sollicitudin aliquam
           ultrices sagittis orci. Id interdum velit laoreet id donec ultrices tincidunt. Orci eu lobortis elementum nibh
           tellus. Tortor posuere ac ut consequat. Eu lobortis elementum nibh tellus molestie nunc non blandit massa.</p>
+      </section>
+      <section id="contact">
+        <div class="contact-form">
+          <form action="https://formspree.io/xqkzlbky" method="POST" target="_blank">
+            <h1 class="section-anchor">Get a quote...</h1>
+            <label>
+              What should I call you?
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label>
+              What's your email?
+              <input type="text" name="_replyto" required autocomplete="email">
+            </label>
+            <label>
+              Tell me about your project!
+              <textarea name="message" required></textarea>
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+          <aside>
+            <h1>Or say hi!</h1>
+            <div class="contact-message">
+              Don't hesitate to get in touch by email, or use one of the socials below!
+            </div>
+            <div class="contact-email-container">
+              <img src="img/icons/mail.svg" alt="Email icon" class="contact-email-icon" role="img">
+              <a class="contact-email">Please enable Javascript to see my email address, or use the contact form
+                instead</a>
+            </div>
+            <div class="contact-zocials">
+              <button class="zocial-button">
+                <img src="img/icons/zocial/twitter.svg" class="icon-default" alt="Twitter icon" role="img">
+              </button>
+              <button class="zocial-button">
+                <img src="img/icons/zocial/discord.svg" class="icon-default" alt="Discord icon" role="img">
+              </button>
+              <button class="zocial-button">
+                <img src="img/icons/zocial/reddit.svg" class="icon-default" alt="Reddit icon" role="img">
+              </button>
+              <button class="zocial-button">
+                <img src="img/icons/zocial/youtube.svg" class="icon-default" alt="YouTube icon" role="img">
+              </button>
+            </div>
+          </aside>
+        </div>
       </section>
     </main>
     <footer>
@@ -260,10 +320,15 @@
     const portrait = document.querySelector(".portrait");
     const booklet = document.querySelector(".booklet");
     const expandButton = document.querySelector(".toggle-expand");
+    const expandContentButton = document.querySelector(".toggle-expand-content");
     const mainSections = document.querySelectorAll("main>section");
     const windowSections = Array.from(document.querySelectorAll(".window>section")).reverse();
-    const sectionHeaders = Array.from(document.querySelectorAll("main>section>h1")).reverse();
+    const sectionAnchors = Array.from(document.querySelectorAll(".section-anchor")).reverse();
+    const header = document.querySelector("header");
     const navButtons = document.querySelectorAll(".section-nav>a");
+    const contactButton = document.querySelector(".contact-button");
+    const emailLink = document.querySelector(".contact-email");
+    const contentExpandCooldown = 1000;
     const musicPlayer = {
       trackCount: 4,
       tick: 100,
@@ -445,11 +510,12 @@
     let bookletIndex = bookletAnimations.length - 1;
 
     let sections = [];
-    navButtons.forEach(button => {
-      sections.push(button.getAttribute("href"));
-    });
     let expanded = false;
+    let contentExpanded = false;
+    let userContentExpanded = false;
+    let disableContentExpand = false;
     let currentSection = sections[0];
+    let lastSection = sectionAnchors.length - 1;
 
     const toggleExpand = () => {
       if (expanded) {
@@ -474,6 +540,29 @@
         });
       }
       expanded = !expanded;
+    };
+
+    const toggleExpandContent = (user = false) => {
+      if (disableContentExpand) return;
+      disableContentExpand = true;
+      if (expanded) {
+        toggleExpand();
+      }
+      if (contentExpanded) {
+        expandButton.classList.remove("hidden");
+        expandContentButton.classList.remove("expand");
+        hero.style.height = "";
+      } else {
+        expandButton.classList.add("hidden");
+        expandContentButton.classList.add("expand");
+        hero.style.height = 0;
+      }
+      contentExpanded = !contentExpanded;
+      userContentExpanded = user && contentExpanded;
+      setTimeout(() => {
+        disableContentExpand = false;
+        if (!user) syncScroll();
+      }, contentExpandCooldown);
     };
 
     let interaction = {
@@ -568,11 +657,29 @@
       });
     };
 
+    const registerScrollButton = (button, sectionIndex) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        anchorScrollToSection(sectionIndex);
+        if (expanded) {
+          location.hash = currentSection;
+        }
+      });
+    };
+
     const syncScroll = () => {
       if (expanded) return;
-      let sectionIndex = sectionHeaders.length - 1;
-      for (const header of sectionHeaders) {
-        if (main.scrollTop + main.clientHeight > header.offsetTop) {
+      let sectionIndex = lastSection;
+      for (const anchor of sectionAnchors) {
+        if (main.scrollTop + main.clientHeight > anchor.offsetTop) {
+          if (sectionIndex === lastSection) {
+            if (!userContentExpanded && !contentExpanded && window.innerHeight >= window.innerWidth) {
+              toggleExpandContent();
+            }
+            break;
+          } else if (!userContentExpanded && contentExpanded && window.innerHeight >= window.innerWidth) {
+            toggleExpandContent();
+          }
           scrollToSection(sectionIndex);
           break;
         }
@@ -583,20 +690,34 @@
     main.addEventListener("scroll", (e) => syncScroll());
 
     addEventListener("resize", (e) => {
+      if (contentExpanded && window.innerHeight < window.innerWidth) {
+        toggleExpandContent();
+      }
       syncScroll();
     });
 
     expandButton.addEventListener("click", () => toggleExpand);
 
-    for (let sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
-      document.querySelector('[href="' + sections[sectionIndex] + '"]').addEventListener("click", (e) => {
-        e.preventDefault();
-        anchorScrollToSection(sectionIndex);
-        if (expanded) {
-          location.hash = currentSection;
-        }
-      });
+    let sectionIndex = 0;
+    for (const button of navButtons) {
+      sections.push(button.getAttribute("href"));
+      registerScrollButton(button, sectionIndex);
+      sectionIndex++;
+    };
+    registerScrollButton(contactButton, sectionIndex);
+
+    const mailDecrypter = (piece) => {
+      return
+    };
+    const encryptedMail = "7662756975726c727340656f6d2e2e6b77632e6f";
+    const mailKey = "msbehflqijgdakortncp";
+    let decryptedMail = "";
+    for (const char of mailKey) {
+      let i = 2 * (char.charCodeAt(0) - 97);
+      decryptedMail += String.fromCharCode(Number("0x" + encryptedMail[i] + encryptedMail[i + 1]));
     }
+    emailLink.innerHTML = decryptedMail;
+    emailLink.setAttribute("href", "mailto:" + decryptedMail);
   </script>
 </body>
 

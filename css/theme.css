@@ -32,9 +32,14 @@ html {
     font-size: 14px;
   }
 }
-@media screen and (max-height: 705px), screen and (max-width: 705px) {
+@media screen and (max-height: 905px), screen and (max-width: 905px) {
   html {
     font-size: 12px;
+  }
+}
+@media screen and (max-height: 705px), screen and (max-width: 705px) {
+  html {
+    font-size: 10px;
   }
 }
 
@@ -134,6 +139,11 @@ h1:after {
     padding: 0;
   }
 }
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  .window.expand {
+    padding-bottom: 9.5rem;
+  }
+}
 .window > section {
   display: flex;
   flex-shrink: 0;
@@ -144,6 +154,40 @@ h1:after {
   max-height: 100%;
   padding: 3rem;
   transition: padding 0.5s ease,margin-left 0.5s ease,margin-right 0.5s ease;
+}
+.window > section a,
+.window > section a:visited,
+.window > section a:active,
+.window > section .text-button {
+  display: inline-block;
+  position: relative;
+  color: #F54838;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.window > section a::after,
+.window > section a:visited::after,
+.window > section a:active::after,
+.window > section .text-button::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 0;
+  left: 50%;
+  height: 0.1em;
+  background: #B0C3CF;
+  border-radius: 0.1em;
+  transition: width 0.25s ease, left 0.25s ease;
+}
+.window > section a:hover::after,
+.window > section .text-button:hover::after,
+.window > section a:focus::after,
+.window > section .text-button:focus::after {
+  left: 0;
+  width: 100%;
 }
 .window > section.expand, .window > section.expand-full {
   padding: 0;
@@ -208,6 +252,12 @@ h1:after {
     box-shadow: inset 0 0.5rem 0 #202C38;
   }
 }
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  .main.shrink {
+    margin-top: -5.75rem;
+    min-height: 5.75rem;
+  }
+}
 
 .shadow {
   position: absolute;
@@ -253,6 +303,11 @@ h1:after {
     margin-top: -8rem;
   }
 }
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  .shadow1.shrink {
+    margin-top: -7rem;
+  }
+}
 
 .shadow2 {
   opacity: 0.5;
@@ -268,6 +323,11 @@ h1:after {
   }
   .shadow2.shrink {
     margin-top: -9.25rem;
+  }
+}
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  .shadow2.shrink {
+    margin-top: -8.25rem;
   }
 }
 
@@ -287,15 +347,20 @@ h1:after {
     margin-top: -10.5rem;
   }
 }
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  .shadow3.shrink {
+    margin-top: -9.5rem;
+  }
+}
 
 .logo {
   display: block;
   height: 100%;
-  margin: auto;
 }
 
 #game-window {
   display: block;
+  min-height: 100px;
 }
 
 .game-container {
@@ -638,7 +703,7 @@ header {
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-  transition: height 0.5s ease,padding 0.5s ease;
+  transition: height 0.5s ease,padding 0.5s ease,opacity 0.5s ease;
 }
 header::after {
   content: "";
@@ -651,11 +716,46 @@ header::after {
 @media screen and (orientation: portrait) {
   header {
     height: 9rem;
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
   header::after {
-    margin-top: 0.75rem;
+    margin-top: 0.45rem;
   }
+}
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  header {
+    height: 7.5rem;
+  }
+}
+
+.header-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+.header-content > .header-left, .header-content > .logo, .header-content > .header-right {
+  width: 100%;
+}
+.header-content > .header-right {
+  text-align: right;
+}
+.header-content button:not(.icon-button) {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  border: 0;
+  background: #F54838;
+  color: #EDF2F7;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.header-content button:not(.icon-button):hover {
+  background: #376480;
 }
 
 main {
@@ -672,46 +772,15 @@ main {
 main > section {
   flex-shrink: 0;
   font-size: 1.5rem;
-  min-height: 100%;
-  padding-top: 3rem;
+  padding: 3rem 0;
+}
+@media screen and (orientation: landscape) {
+  main > section {
+    min-height: 100%;
+  }
 }
 main > section p {
   line-height: 1.75em;
-}
-main a,
-main a:visited,
-main a:active,
-main .text-button {
-  display: inline-block;
-  position: relative;
-  color: #F54838;
-  text-decoration: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-}
-main a::after,
-main a:visited::after,
-main a:active::after,
-main .text-button::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  margin: auto;
-  width: 0;
-  margin-top: -0.5rem;
-  left: 50%;
-  height: 0.1rem;
-  background: #B0C3CF;
-  border-radius: 0.25rem;
-  transition: width 0.25s ease, left 0.25s ease;
-}
-main a:hover::after,
-main .text-button:hover::after,
-main a:focus::after,
-main .text-button:focus::after {
-  left: 0;
-  width: 100%;
 }
 
 footer {
@@ -744,6 +813,14 @@ footer::before {
   bottom: 0;
   margin-bottom: 6rem;
   background: linear-gradient(rgba(255, 255, 255, 0.001), #EDF2F7);
+}
+@media screen and (orientation: portrait) and (max-height: 905px), screen and (orientation: portrait) and (max-width: 905px) {
+  footer {
+    height: 5rem;
+  }
+  footer::before {
+    margin-bottom: 5rem;
+  }
 }
 
 header::after,
@@ -798,8 +875,7 @@ footer::before {
   height: 2rem;
 }
 .section-nav > a > img {
-  width: 4rem;
-  height: 4rem;
+  height: 80%;
   margin: auto;
   transition: width 0.5s ease,height 0.5s ease;
 }
@@ -807,6 +883,168 @@ footer::before {
   .section-nav.expand > a > span {
     background: #376480;
   }
+}
+
+#contact {
+  min-height: 100%;
+}
+
+.contact-form {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.contact-form label,
+.contact-form input,
+.contact-form textarea {
+  display: block;
+  width: 100%;
+}
+.contact-form label {
+  margin-bottom: 1rem;
+  text-indent: 1rem;
+  border-radius: 1rem;
+  background: #376480;
+  color: #EDF2F7;
+  text-align: left;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  border: 0;
+}
+.contact-form input,
+.contact-form textarea {
+  background: #EDF2F7;
+  color: #202C38;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.25rem 1rem;
+}
+.contact-form textarea {
+  min-height: 10rem;
+  line-height: normal;
+}
+.contact-form h1 {
+  margin: 2rem 0;
+  height: 1em;
+  line-height: 1;
+  color: inherit;
+  white-space: nowrap;
+}
+.contact-form h1::after {
+  display: none;
+}
+.contact-form > form, .contact-form > aside {
+  padding: 0 2rem 1rem;
+}
+.contact-form > form {
+  flex: 1 1 61.8%;
+  background: #B0C3CF;
+  color: #376480;
+  text-align: center;
+}
+.contact-form > form button {
+  display: inline-block;
+  border-radius: 1rem;
+  padding: 0.25rem 3rem;
+  font-size: 1.25em;
+  background: #F54838;
+  color: #EDF2F7;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.contact-form > form button:hover {
+  background: #376480;
+}
+.contact-form > aside {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  flex: 1 1 38.2%;
+  background: #F54838;
+  color: #EDF2F7;
+}
+
+.contact-email-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3rem 0;
+}
+.contact-email-container a,
+.contact-email-container a:visited,
+.contact-email-container a:active,
+.contact-email-container .text-button {
+  display: inline-block;
+  position: relative;
+  color: #EDF2F7;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.contact-email-container a::after,
+.contact-email-container a:visited::after,
+.contact-email-container a:active::after,
+.contact-email-container .text-button::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 0;
+  left: 50%;
+  height: 0.1em;
+  background: #376480;
+  border-radius: 0.1em;
+  transition: width 0.25s ease, left 0.25s ease;
+}
+.contact-email-container a:hover::after,
+.contact-email-container .text-button:hover::after,
+.contact-email-container a:focus::after,
+.contact-email-container .text-button:focus::after {
+  left: 0;
+  width: 100%;
+}
+
+.contact-email-icon {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.contact-email {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+}
+
+.contact-zocials {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.zocial-button {
+  font-size: 4rem;
+  width: 5rem;
+  height: 5rem;
+  line-height: 1;
+  border-radius: 5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.zocial-button:hover {
+  background: #376480;
+}
+.zocial-button > img {
+  display: block;
+  margin: auto;
 }
 
 .window-overlay {
@@ -846,18 +1084,31 @@ footer::before {
   opacity: 0;
 }
 
+.toggle-expand,
+.toggle-expand-content {
+  font-size: 2.5rem;
+}
+.toggle-expand > .restore,
+.toggle-expand-content > .restore {
+  display: none;
+}
+.toggle-expand.expand > .expand,
+.toggle-expand-content.expand > .expand {
+  display: none;
+}
+.toggle-expand.expand > .restore,
+.toggle-expand-content.expand > .restore {
+  display: inline;
+}
+
 .toggle-expand {
   margin: 1rem;
-  font-size: 2rem;
 }
-.toggle-expand > .restore {
-  display: none;
-}
-.toggle-expand.expand > .expand {
-  display: none;
-}
-.toggle-expand.expand > .restore {
-  display: inline;
+
+@media screen and (orientation: landscape) {
+  .toggle-expand-content {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=theme.css.map */
