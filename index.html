@@ -53,8 +53,8 @@
           <div class="game-health-value"></div>
         </div>
       </div>
-      <div class="game-container"></div>
-      <div class="game-overlay">
+      <div class="game-container interactable"></div>
+      <div class=" game-overlay">
         <button class="game-start game-play-button" onclick="startGame();">Play</button>
         <div class="game-over hidden">
           <span class="game-over-message">GAME OVER!</span>
@@ -329,6 +329,20 @@
     const contactButtons = document.querySelectorAll(".contact-button");
     const emailLink = document.querySelector(".contact-email");
     const contentExpandCooldown = 1000;
+
+    const registerInteraction = (element, listener, callback) => {
+      element.classList.add("interactable");
+      element.addEventListener(listener, (event) => {
+        callback(event);
+        event.preventDefault();
+        event.stopPropagation();
+      });
+    };
+
+    const registerClick = (element, callback) => {
+      registerInteraction(element, "click", callback);
+    };
+
     const musicPlayer = {
       trackCount: 4,
       tick: 100,
@@ -449,15 +463,15 @@
       updateTicker();
     }
 
-    musicPlayer.next.addEventListener("click", () => {
+    registerClick(musicPlayer.next, () => {
       chooseTrack(1);
     });
 
-    musicPlayer.previous.addEventListener("click", () => {
+    registerClick(musicPlayer.previous, () => {
       chooseTrack(-1);
     });
 
-    musicPlayer.play.addEventListener("click", () => {
+    registerClick(musicPlayer.play, () => {
       if (!allTracksLoaded) return;
       if (playing) {
         tracks[trackIndex].audio.pause();
@@ -473,7 +487,7 @@
       updateTicker();
     });
 
-    musicPlayer.seeker.addEventListener("pointerdown", (e) => {
+    registerInteraction(musicPlayer.seeker, "pointerdown", (e) => {
       if (!allTracksLoaded) return;
       musicHandleGrabbed = true;
       seekToX(e.x);
@@ -611,7 +625,7 @@
       booklet.play();
     }
 
-    booklet.addEventListener("click", (e) => {
+    registerClick(booklet, (e) => {
       flipBooklet(e.clientX < booklet.clientWidth / 2.0);
     });
 
@@ -658,8 +672,7 @@
     };
 
     const registerScrollButton = (button, sectionIndex) => {
-      button.addEventListener("click", (e) => {
-        e.preventDefault();
+      registerClick(button, () => {
         anchorScrollToSection(sectionIndex);
         if (expanded) {
           location.hash = currentSection;
@@ -696,7 +709,7 @@
       syncScroll();
     });
 
-    expandButton.addEventListener("click", () => toggleExpand);
+    registerClick(expandButton, () => toggleExpand);
 
     let sectionIndex = 0;
     for (const button of navButtons) {

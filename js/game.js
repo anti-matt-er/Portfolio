@@ -859,10 +859,14 @@ const loadGame = () => {
 
 game.view.addEventListener("pointerdown", (e) => {
   shooting = true;
+  e.preventDefault();
+  e.stopPropagation();
 });
 
 game.view.addEventListener("pointerup", (e) => {
   shooting = false;
+  e.preventDefault();
+  e.stopPropagation();
 });
 
 game.view.addEventListener("pointermove", (e) => {
