@@ -56,7 +56,7 @@ html {
 
 body {
   display: flex;
-  background: url("../img/global/dot.png") fixed #202C38;
+  background: #202C38;
   width: 100%;
   height: 100%;
   transition: flex-direction 0.35s ease,padding-bottom 0.35s ease;
@@ -141,6 +141,66 @@ button :after {
   .window-pointer-text::after {
     content: "above";
   }
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.background-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  transform: translate(-50%, -50%);
+  transition: margin-top 0.35s ease,margin-left 0.35s ease;
+}
+
+@keyframes bg-circle {
+  0% {
+    r: 5;
+    fill: #263a4a;
+    stroke: #263a4a;
+  }
+  50% {
+    r: 15;
+    fill: transparent;
+    stroke: #2f5268;
+  }
+  100% {
+    r: 5;
+    fill: #263a4a;
+    stroke: #263a4a;
+  }
+}
+#background-circles > circle {
+  r: 5;
+  fill: #263a4a;
+  stroke: #263a4a;
+  stroke-width: 0.125rem;
+}
+
+.c0 {
+  animation: bg-circle 4s ease-in-out infinite;
+}
+
+.c1 {
+  animation: bg-circle 4s 1s ease-in-out infinite;
+}
+
+.c2 {
+  animation: bg-circle 4s 3s ease-in-out infinite;
+}
+
+.background-render {
+  width: 100%;
+  height: 100%;
 }
 
 .window {

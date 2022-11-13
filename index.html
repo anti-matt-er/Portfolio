@@ -40,6 +40,31 @@
 </head>
 
 <body>
+  <div class="background">
+    <svg class="background-container">
+      <defs>
+        <pattern id="background-circles" width="240" height="240" patternUnits="userSpaceOnUse">
+          <circle cx="30" cy="30" class="c1" />
+          <circle cx="90" cy="30" class="c0" />
+          <circle cx="150" cy="30" class="c1" />
+          <circle cx="210" cy="30" class="c2" />
+          <circle cx="30" cy="90" class="c0" />
+          <circle cx="90" cy="90" class="c1" />
+          <circle cx="150" cy="90" class="c2" />
+          <circle cx="210" cy="90" class="c1" />
+          <circle cx="30" cy="150" class="c1" />
+          <circle cx="90" cy="150" class="c2" />
+          <circle cx="150" cy="150" class="c1" />
+          <circle cx="210" cy="150" class="c0" />
+          <circle cx="30" cy="210" class="c2" />
+          <circle cx="90" cy="210" class="c1" />
+          <circle cx="150" cy="210" class="c0" />
+          <circle cx="210" cy="210" class="c1" />
+        </pattern>
+      </defs>
+      <rect class="background-render" fill="url(#background-circles)" />
+    </svg>
+  </div>
   <div class="window">
     <section id="intro-window" class="expand">
       <model-viewer src="img/portrait/model.glb" class="portrait" alt="Voxel selfie" loading="eager"
@@ -493,6 +518,7 @@
     const contactButtons = document.querySelectorAll(".contact-button");
     const exampleBoxes = document.querySelectorAll(".examples-container");
     const emailLink = document.querySelector(".contact-email");
+    const background = document.getElementById("background-circles");
     const contentExpandCooldown = 1000;
 
     const mod = (n, m) => {
@@ -827,6 +853,35 @@
       booklet.cameraOrbit = orbit;
     };
 
+    const backgroundSpeed = 0.1;
+    let backgroundPreviousTime;
+    let backgroundPosition = {
+      x: 0,
+      y: 0
+    };
+    let backgroundOffset = 0;
+    let previousInteraction = {
+      x: 0,
+      y: 0
+    };
+
+    const animateBackground = (timestamp) => {
+      if (backgroundPreviousTime === undefined) {
+        backgroundPreviousTime = timestamp;
+        window.requestAnimationFrame(animateBackground);
+        return;
+      }
+      let delta = (timestamp - backgroundPreviousTime) / 60;
+      backgroundPosition.x += (-(interaction.x + backgroundOffset * document.body.clientWidth) * backgroundSpeed - backgroundPosition.x) * delta * backgroundSpeed;
+      backgroundPosition.y += (-interaction.y * backgroundSpeed - backgroundPosition.y) * delta * backgroundSpeed;
+      background.setAttribute('x', backgroundPosition.x);
+      background.setAttribute('y', backgroundPosition.y);
+      backgroundPreviousTime = timestamp;
+      window.requestAnimationFrame(animateBackground);
+    }
+
+    window.requestAnimationFrame(animateBackground);
+
     let bookFlipBackwards = false;
     let bookFlipOffset = 0;
     let bookCanFlip = true;
@@ -887,6 +942,7 @@
         let offset = (sectionIndex * 100).toString() + "%";
         section.style["margin-left"] = "-" + offset;
         section.style["margin-right"] = offset;
+        backgroundOffset = sectionIndex;
       }
     };
 
