@@ -6,7 +6,7 @@ const overlayDisplay = document.querySelector(".game-overlay");
 const playDisplay = document.querySelector(".game-start");
 const gameoverDisplay = document.querySelector(".game-over");
 const highScoreDisplay = document.querySelector(".game-hi-score-value");
-const spritePath = "img/game/";
+const spritePath = "img/hero/game/";
 const spritesheets = [
   "player",
   "enemy",
