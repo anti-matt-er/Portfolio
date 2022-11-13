@@ -923,13 +923,13 @@
       }, bookletFlipDuration * 1000);
     });
 
-    window.addEventListener("mousemove", (e) => {
+    addEventListener("mousemove", (e) => {
       interaction.x = e.pageX;
       interaction.y = e.pageY;
       tiltPortrait();
     });
 
-    window.addEventListener("devicemotion", (e) => {
+    addEventListener("devicemotion", (e) => {
       interaction.x = e.accelerationIncludingGravity.x * portraitTiltStrength;
       interaction.y = e.accelerationIncludingGravity.y * portraitTiltStrength;
       tiltPortrait();
