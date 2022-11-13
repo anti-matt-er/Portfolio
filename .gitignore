@@ -4,4 +4,8 @@
 
 img/src/**
 scss/**
+precss/**
 *.css.map
+node_modules
+package.json
+package-lock.json
