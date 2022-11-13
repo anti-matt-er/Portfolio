@@ -4,12 +4,12 @@ body {
   color: #202C38;
 }
 
-h1,
+.examples-previous,
+.examples-next, h1,
 h2,
 h3 {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
-  color: #376480;
 }
 
 #game-window {
@@ -67,20 +67,27 @@ body {
   }
 }
 
-h1 {
-  font-size: 2.5em;
+h1,
+h2,
+h3 {
+  color: #376480;
   text-align: center;
   margin: 0 0 3rem;
   transition: margin 0.35s ease,font-size 0.35s ease;
 }
 @media screen and (orientation: portrait) {
-  h1 {
+  h1,
+  h2,
+  h3 {
     margin: 0 0 2rem;
     font-size: 2em;
   }
 }
 
-h1:after {
+h1 {
+  font-size: 2.5em;
+}
+h1::after {
   content: "";
   width: 85%;
   height: 0.15rem;
@@ -88,6 +95,14 @@ h1:after {
   border-radius: 1rem;
   display: block;
   margin: auto;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
 }
 
 a,
@@ -115,6 +130,17 @@ button :after {
 
 .interactable {
   pointer-events: all;
+}
+
+@media screen and (orientation: landscape) {
+  .window-pointer-text::after {
+    content: "to the left";
+  }
+}
+@media screen and (orientation: portrait) {
+  .window-pointer-text::after {
+    content: "above";
+  }
 }
 
 .window {
@@ -778,18 +804,10 @@ main > section {
   font-size: 1.5rem;
   padding: 3rem 0;
 }
-@media screen and (orientation: landscape) {
-  main > section {
-    min-height: 100%;
-  }
-}
-main > section p {
-  line-height: 1.75em;
-}
-main > section p a,
-main > section p a:visited,
-main > section p a:active,
-main > section p .text-button {
+main > section a,
+main > section a:visited,
+main > section a:active,
+main > section .text-button {
   display: inline-block;
   position: relative;
   color: #F54838;
@@ -798,10 +816,10 @@ main > section p .text-button {
   border: 0;
   cursor: pointer;
 }
-main > section p a::after,
-main > section p a:visited::after,
-main > section p a:active::after,
-main > section p .text-button::after {
+main > section a::after,
+main > section a:visited::after,
+main > section a:active::after,
+main > section .text-button::after {
   content: " ";
   display: block;
   position: absolute;
@@ -813,12 +831,48 @@ main > section p .text-button::after {
   border-radius: 0.1em;
   transition: width 0.35s ease,left 0.35s ease;
 }
-main > section p a:hover::after,
-main > section p .text-button:hover::after,
-main > section p a:focus::after,
-main > section p .text-button:focus::after {
+main > section a[href^="http://"]::before,
+main > section a[href^="https://"]::before {
+  content: url("../img/icons/external-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
+main > section a:not(.contact-button)[href^="#"]::before {
+  content: url("../img/icons/internal-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
+main > section a:hover::after,
+main > section .text-button:hover::after,
+main > section a:focus::after,
+main > section .text-button:focus::after {
   left: 0;
   width: 100%;
+}
+@media screen and (orientation: landscape) {
+  main > section {
+    min-height: 100%;
+  }
+}
+main > section > h1 > img {
+  display: inline-block;
+  position: relative;
+  top: -0.2em;
+  width: 0.8em;
+  margin-right: 0.25em;
+}
+main > section > p {
+  line-height: 1.75em;
+}
+main > section > p > strong {
+  color: #376480;
+  font-weight: 550;
 }
 
 footer {
@@ -868,10 +922,258 @@ footer::before {
 }
 @media screen and (orientation: portrait) {
   header::after,
-footer::before {
+  footer::before {
     left: 2rem;
     right: 2rem;
   }
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  border: 0.15rem solid #B0C3CF;
+  border-radius: 2rem;
+  margin: 3rem auto 0;
+  user-select: none;
+}
+.examples > h2 {
+  padding-top: 0.25em;
+  margin-bottom: 0;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+@media screen and (orientation: portrait) {
+  .examples {
+    position: relative;
+    width: auto;
+    left: -2rem;
+    margin-right: -4rem;
+    border: 0;
+  }
+}
+
+.examples-container {
+  display: flex;
+}
+.examples-container.expand {
+  position: fixed;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(32, 44, 56, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 500;
+}
+.examples-container.expand .examples-slides {
+  margin: 0;
+  border-radius: 0;
+}
+.examples-container.expand .example-window {
+  height: 100%;
+  flex-shrink: 1;
+}
+.examples-container.expand .example-window:not(.video) {
+  background: none;
+}
+.examples-container.expand .example-window > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.examples-container.expand .example-caption {
+  font-size: 1em;
+  border-top: 0.5rem solid #F54838;
+}
+.examples-container.expand .examples-previous,
+.examples-container.expand .examples-next {
+  border: 0;
+  position: fixed;
+  z-index: 1;
+  color: #EDF2F7;
+  background: #F54838;
+  height: auto;
+  font-size: 4rem;
+  transition: background-color 0.35s ease;
+}
+.examples-container.expand .examples-previous:hover,
+.examples-container.expand .examples-next:hover {
+  background: #376480;
+}
+.examples-container.expand .examples-previous {
+  left: 0;
+  padding: 0 2rem 0 1rem;
+}
+.examples-container.expand .examples-next {
+  right: 0;
+  padding: 0 1rem 0 2rem;
+}
+
+.examples-slides {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 0;
+  flex-grow: 1;
+  margin: 0 0.25rem 2rem;
+  border-radius: 2rem;
+}
+.examples-slides > .toggle-expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  font-size: 2rem;
+  margin: 0;
+  background: #B0C3CF;
+  border: 0.5em solid #B0C3CF;
+  border-bottom-left-radius: 2rem;
+}
+.examples-slides > .toggle-expand.expand {
+  font-size: 2.5rem;
+  background: none;
+  border-color: transparent;
+}
+
+.example-slider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+.example-slider:not(.expand) {
+  transition: margin-left 0.35s ease,margin-right 0.35s ease;
+}
+
+.example-window {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 32rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #d8e1e7;
+}
+.example-window.video {
+  background: black;
+}
+.example-window > img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+}
+.example-window > model-viewer {
+  width: 100%;
+  height: 100%;
+}
+.example-window > iframe, .example-window > video {
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16/9;
+}
+
+.example-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #B0C3CF;
+  font-size: 0.85em;
+  padding: 0.5em 1em;
+  flex-shrink: 1;
+  flex-grow: 1;
+  text-align: center;
+  pointer-events: all;
+  user-select: text;
+}
+.example-caption a,
+.example-caption a:visited,
+.example-caption a:active,
+.example-caption .text-button {
+  display: inline-block;
+  position: relative;
+  color: #F54838;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.example-caption a::after,
+.example-caption a:visited::after,
+.example-caption a:active::after,
+.example-caption .text-button::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 0;
+  left: 50%;
+  height: 0.1em;
+  background: #376480;
+  border-radius: 0.1em;
+  transition: width 0.35s ease,left 0.35s ease;
+}
+.example-caption a[href^="http://"]::before,
+.example-caption a[href^="https://"]::before {
+  content: url("../img/icons/external-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
+.example-caption a:not(.contact-button)[href^="#"]::before {
+  content: url("../img/icons/internal-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
+.example-caption a:hover::after,
+.example-caption .text-button:hover::after,
+.example-caption a:focus::after,
+.example-caption .text-button:focus::after {
+  left: 0;
+  width: 100%;
+}
+.example-caption ::selection {
+  background: #EDF2F7;
+}
+
+.examples-previous,
+.examples-next {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  height: 12rem;
+  color: #376480;
+  border: 0.15rem solid transparent;
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: border 0.35s ease;
+}
+.examples-previous:hover,
+.examples-next:hover {
+  border-color: #B0C3CF;
+}
+
+.examples-previous {
+  border-radius: 0 4rem 4rem 0;
+  border-width: 0.15rem 0.15rem 0.15rem 0;
+}
+
+.examples-next {
+  border-radius: 4rem 0 0 4rem;
+  border-width: 0.15rem 0 0.15rem 0.15rem;
 }
 
 .section-nav {
@@ -1043,6 +1345,23 @@ footer::before {
   border-radius: 0.1em;
   transition: width 0.35s ease,left 0.35s ease;
 }
+.contact-email-container a[href^="http://"]::before,
+.contact-email-container a[href^="https://"]::before {
+  content: url("../img/icons/external-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
+.contact-email-container a:not(.contact-button)[href^="#"]::before {
+  content: url("../img/icons/internal-glyph.svg");
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  width: 1em;
+  margin-right: 0.25em;
+}
 .contact-email-container a:hover::after,
 .contact-email-container .text-button:hover::after,
 .contact-email-container a:focus::after,
@@ -1096,11 +1415,16 @@ footer::before {
   z-index: 100;
   transition: right 0.35s ease,margin-right 0.35s ease;
 }
+.window-overlay > .toggle-expand {
+  margin: 1rem;
+}
 
 .icon-button {
-  background: transparent;
-  border: none;
+  position: relative;
   height: 1em;
+  padding: 0.5em;
+  border: none;
+  background: none;
   cursor: pointer;
 }
 .icon-button:hover .icon-default {
@@ -1112,16 +1436,16 @@ footer::before {
 
 .icon-default,
 .icon-hover {
-  position: relative;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 1em;
   opacity: 1;
   transition: opacity 0.35s ease;
 }
 
 .icon-hover {
-  position: relative;
-  top: -1em;
   opacity: 0;
 }
 
@@ -1140,10 +1464,6 @@ footer::before {
 .toggle-expand.expand > .restore,
 .toggle-expand-content.expand > .restore {
   display: inline;
-}
-
-.toggle-expand {
-  margin: 1rem;
 }
 
 @media screen and (orientation: landscape) {

@@ -28,7 +28,7 @@
   <meta name="msapplication-TileColor" content="#00aba9">
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400&family=Jost:wght@300;400&family=Rajdhani:wght@600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400&family=Jost:wght@300;400;550&family=Rajdhani:wght@600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
@@ -181,40 +181,176 @@
       </div>
     </header>
     <main>
-      <section id="intro" tabindex="0">
-        <h1 class="section-anchor">A Digital Creative Enthusiast</h1>
-        <p>Hi! I'm Matt from Lancaster, UK. I make things!</p>
-        <p>This is a hand-crafted portfolio of some examples of my professional work and other creative endeavours.
+      <section id="intro">
+        <h1 class="section-anchor"><img src="../img/icons/about-glyph.svg">A 21<sup>st</sup> Century Digital Creative
+          Enthusiast</h1>
+        <p>Hi there! I'm Matt and I love to make things!</p>
+        <p>This is a hand-crafted portfolio in which you'll find select examples of my professional work and other
+          labours of love.</p>
+        <p>The first item I would bring to your attention is the website itself: a bespoke design made with
+          completely-custom <strong>html</strong>, <strong>css</strong>, <strong>javascript</strong> and assets.
         </p>
-        <p>The first item I would bring to your attention is the website itself: a bespoke design made with custom
-          html,
-          css and javascript.</p>
-        <p>Look below for a selection of examples of my professional work and other labours of love.</p>
+        <p>If a website like this takes your fancy, go ahead and
+          <a href="#contact" class="contact-button">Ask for a quote!</a>
+          Or take a look around and discover what else I have to offer!
+        </p>
       </section>
-      <section id="game" tabindex="0">
-        <h1 class="section-anchor">Game Design, Development &amp; Game-Ready Assets</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Tempus urna et pharetra pharetra massa massa ultricies mi. Placerat in egestas erat imperdiet
-          sed euismod nisi. A pellentesque sit amet porttitor eget dolor. Cras pulvinar mattis nunc sed blandit libero
-          volutpat sed. Id eu nisl nunc mi. Malesuada proin libero nunc consequat. Potenti nullam ac tortor vitae purus
-          faucibus. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Venenatis tellus in metus
-          vulputate eu scelerisque felis imperdiet. Felis imperdiet proin fermentum leo vel orci porta non. Viverra
-          mauris in aliquam sem fringilla ut. Hac habitasse platea dictumst quisque sagittis purus sit amet volutpat.
-          Euismod quis viverra nibh cras pulvinar mattis.</p>
+      <section id="game">
+        <h1 class="section-anchor"><img src="../img/icons/games-glyph.svg">Game Design, Development &amp; <nobr>
+            Game-Ready
+            Assets</nobr>
+        </h1>
+        <p>If there's one place where all my passions intersect it's game dev. Whether it's <strong>pixel art</strong>,
+          <a href="#music">Music</a> and <strong>sound effects</strong>, rigged and animated <strong>3D models</strong>,
+          <strong>UI design</strong> or the <strong>programming</strong> to put it all together
+          <a href="#contact" class="contact-button">I'm your guy!</a>
+        </p>
+        <p>Check out the minigame in the window <span class="window-pointer-text"></span> made in PixiJS, see if you can
+          beat my highscore of 74!</p>
+        <p>My weapon of choice is the fantastic <a href="https://godotengine.org" target="_blank"
+            rel="noopener noreferrer">Godot Engine</a>, but I'm adept in
+          <strong>C#</strong>, <strong>C++</strong>, <strong>Javascript</strong> and many more languages and
+          highly-competent with Unity, Unreal and JS libraries such as PixiJS.
+        </p>
+        <div class="examples">
+          <h2>Examples Showcase</h2>
+          <div class="examples-container">
+            <div class="examples-previous">&lt;</div>
+            <div class="examples-slides">
+              <button class="toggle-expand icon-button">
+                <span class="expand">
+                  <img src="img/icons/expand-dark.svg" class="icon-default" alt="Expand window icon" role="img">
+                  <img src="img/icons/expand-hover.svg" class="icon-hover" alt="Expand window icon" role="img">
+                </span>
+                <span class="restore">
+                  <img src="img/icons/restore.svg" class="icon-default" alt="Restore window icon" role="img">
+                  <img src="img/icons/restore-hover.svg" class="icon-hover" alt="Restore window icon" role="img">
+                </span>
+              </button>
+              <div class="example-slider">
+                <div class="example-window">
+                  <model-viewer src="img/dodo/Dodo.gltf" alt="Dodo" loading="eager" autoplay camera-controls
+                    disable-zoom shadow-intensity="1" camera-orbit="45deg 60deg 100%" max-camera-orbit="auto auto auto">
+                </div>
+                <div class="example-caption">
+                  <span>Rigged and animated Dodo for <em>Smithereens</em>: a cartoon-style 3D battle-royale game like
+                    Worms.</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window video">
+                  <iframe src="https://www.youtube.com/embed/yQ0h7OrvOdY?modestbranding=1" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+                <div class="example-caption">
+                  <span>Promotional compilation video for my upcoming Roguelike Shoot-em-up <em>Spacer</em>! All assets
+                    created by myself. Head over to <a href="https://reddit.com/r/SpacerGame" target="_blank"
+                      rel="noopener noreferrer">r/SpacerGame</a> to keep updated!</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/boko.png" alt="Boko">
+                </div>
+                <div class="example-caption">
+                  <span>Pixel art of <em>Boko the Destroyer</em> from the amazing <a href="https://jupeykrusho.com"
+                      target="_blank" rel="noopener noreferrer">Jupey Krusho's</a> <em>Battle Boko</em> line of action
+                    figures.</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window video">
+                  <video controls loop muted>
+                    <source src="img/examples/poker.webm" type="video/webm">
+                    <source src="img/examples/poker.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="example-caption">
+                  <span>Proof of concept video for <em>Passion Poker</em>, showing off some 3D models, animations
+                    and UI.</span>
+                </div>
+              </div>
+            </div>
+            <div class="examples-next">&gt;</div>
+          </div>
+        </div>
       </section>
-      <section id="print" tabindex="0">
-        <h1 class="section-anchor">High-Quality Print Media</h1>
-        <p>Elementum integer enim neque volutpat ac. Mattis aliquam faucibus purus in massa tempor nec feugiat nisl.
-          Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis. A lacus vestibulum sed arcu non. Diam
-          quam nulla porttitor massa id neque aliquam vestibulum morbi. Interdum posuere lorem ipsum dolor sit amet.
-          Aliquam purus sit amet luctus venenatis lectus. Sit amet facilisis magna etiam tempor orci eu. Rhoncus urna
-          neque viverra justo nec ultrices dui sapien. Ullamcorper velit sed ullamcorper morbi tincidunt. Non tellus
-          orci ac auctor augue mauris augue neque gravida. Consectetur adipiscing elit duis tristique sollicitudin nibh
-          sit. Eget nulla facilisi etiam dignissim diam quis. Quis enim lobortis scelerisque fermentum dui faucibus in
-          ornare quam. Purus faucibus ornare suspendisse sed. Tincidunt arcu non sodales neque sodales.</p>
+      <section id="print">
+        <h1 class="section-anchor"><img src="../img/icons/print-glyph.svg">High-Quality Print Media</h1>
+        <p>With more than a decade's professional expertise in <strong>Adobe's Creative Cloud</strong> and hand's-on
+          experience with several printing companies, I know precisely what it takes to materialise your ideas into
+          physical form. <a href="#contact" class="contact-button">I will make sure</a> your project gets all the
+          attention to detail and quality-assurance it deserves!</p>
+        <p>In the window <span class="window-pointer-text"></span> you will find a 3D preview of my latest commission: a
+          lyric booklet and album art from <em>Stuart Anthony & Larry Beckett's</em> <a
+            href="https://atthebarrier.com/2022/04/03/stuart-anthony-larry-beckett-mirabeau-bridge-album-review/"
+            target="_blank" rel="noopener noreferrer">highly-acclaimed</a>
+          new album, <a href="https://stuartanthonyuk.bandcamp.com/album/mirabeau-bridge" target="_blank"
+            rel="noopener noreferrer">Mirabeau Bridge</a>!</p>
+        <div class="examples">
+          <h2>Examples Showcase</h2>
+          <div class="examples-container">
+            <div class="examples-previous">&lt;</div>
+            <div class="examples-slides">
+              <button class="toggle-expand icon-button">
+                <span class="expand">
+                  <img src="img/icons/expand-dark.svg" class="icon-default" alt="Expand window icon" role="img">
+                  <img src="img/icons/expand-hover.svg" class="icon-hover" alt="Expand window icon" role="img">
+                </span>
+                <span class="restore">
+                  <img src="img/icons/restore.svg" class="icon-default" alt="Restore window icon" role="img">
+                  <img src="img/icons/restore-hover.svg" class="icon-hover" alt="Restore window icon" role="img">
+                </span>
+              </button>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/mirabeau.png">
+                </div>
+                <div class="example-caption">
+                  <span>Mirabeau</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/PLINIAN4.png">
+                </div>
+                <div class="example-caption">
+                  <span>PLINIAN4</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/riskismusic.png">
+                </div>
+                <div class="example-caption">
+                  <span>Risk Is Music</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/PLINIAN5.png">
+                </div>
+                <div class="example-caption">
+                  <span>PLINIAN5</span>
+                </div>
+              </div>
+              <div class="example-slider">
+                <div class="example-window">
+                  <img src="img/examples/PLINIAN2-2.png">
+                </div>
+                <div class="example-caption">
+                  <span>PLINIAN2-2</span>
+                </div>
+              </div>
+            </div>
+            <div class="examples-next">&gt;</div>
+          </div>
+        </div>
       </section>
-      <section id="branding" tabindex="0">
-        <h1 class="section-anchor">Eyecatching Branding &amp; Logos</h1>
+      <section id="branding">
+        <h1 class="section-anchor"><img src="../img/icons/branding-glyph.svg">Eyecatching Branding &amp; Logos</h1>
         <p>Quis enim lobortis scelerisque fermentum dui faucibus in. Consectetur adipiscing elit duis tristique
           sollicitudin. Massa massa ultricies mi quis hendrerit dolor. Odio pellentesque diam volutpat commodo sed
           egestas egestas. In cursus turpis massa tincidunt. Nunc mattis enim ut tellus elementum. Velit scelerisque in
@@ -222,9 +358,36 @@
           velit dignissim sodales ut eu sem. Vel facilisis volutpat est velit egestas dui. Nunc mi ipsum faucibus vitae
           aliquet nec ullamcorper sit. Arcu risus quis varius quam quisque id diam vel quam. Ac turpis egestas maecenas
           pharetra convallis posuere morbi leo. Nec feugiat in fermentum posuere urna nec tincidunt.</p>
+        <div class="examples">
+          <h2>Examples Showcase</h2>
+          <div class="examples-container">
+            <div class="examples-previous">&lt;</div>
+            <div class="examples-slides">
+              <button class="toggle-expand icon-button">
+                <span class="expand">
+                  <img src="img/icons/expand-dark.svg" class="icon-default" alt="Expand window icon" role="img">
+                  <img src="img/icons/expand-hover.svg" class="icon-hover" alt="Expand window icon" role="img">
+                </span>
+                <span class="restore">
+                  <img src="img/icons/restore.svg" class="icon-default" alt="Restore window icon" role="img">
+                  <img src="img/icons/restore-hover.svg" class="icon-hover" alt="Restore window icon" role="img">
+                </span>
+              </button>
+              <div class="example-slider">
+                <div class="example-window">
+
+                </div>
+                <div class="example-caption">
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <div class="examples-next">&gt;</div>
+          </div>
+        </div>
       </section>
-      <section id="music" class="last-section" tabindex="0">
-        <h1 class="section-anchor">Music You Can't Get Enough Of</h1>
+      <section id="music" class="last-section">
+        <h1 class="section-anchor"><img src="../img/icons/music-glyph.svg">Music You Can't Get Enough Of</h1>
         <p>Vitae tortor condimentum lacinia quis vel eros donec ac odio. Tellus integer feugiat scelerisque varius morbi
           enim nunc faucibus a. Tempus iaculis urna id volutpat lacus. Accumsan lacus vel facilisis volutpat est velit
           egestas dui. Euismod elementum nisi quis eleifend quam adipiscing vitae. Facilisi cras fermentum odio eu
@@ -262,16 +425,16 @@
             </div>
             <div class="contact-zocials">
               <button class="zocial-button">
-                <img src="img/icons/zocial/twitter.svg" class="icon-default" alt="Twitter icon" role="img">
+                <img src="img/icons/zocial/twitter.svg" alt="Twitter icon" role="img">
               </button>
               <button class="zocial-button">
-                <img src="img/icons/zocial/discord.svg" class="icon-default" alt="Discord icon" role="img">
+                <img src="img/icons/zocial/discord.svg" alt="Discord icon" role="img">
               </button>
               <button class="zocial-button">
-                <img src="img/icons/zocial/reddit.svg" class="icon-default" alt="Reddit icon" role="img">
+                <img src="img/icons/zocial/reddit.svg" alt="Reddit icon" role="img">
               </button>
               <button class="zocial-button">
-                <img src="img/icons/zocial/youtube.svg" class="icon-default" alt="YouTube icon" role="img">
+                <img src="img/icons/zocial/youtube.svg" alt="YouTube icon" role="img">
               </button>
             </div>
           </aside>
@@ -326,9 +489,15 @@
     const sectionAnchors = Array.from(document.querySelectorAll(".section-anchor")).reverse();
     const header = document.querySelector("header");
     const navButtons = document.querySelectorAll(".section-nav>a");
+    const bodyNavButtons = document.querySelectorAll("main>section>p>a:not(.contact-button)[href^='#']");
     const contactButtons = document.querySelectorAll(".contact-button");
+    const exampleBoxes = document.querySelectorAll(".examples-container");
     const emailLink = document.querySelector(".contact-email");
     const contentExpandCooldown = 1000;
+
+    const mod = (n, m) => {
+      return ((n % m) + m) % m;
+    };
 
     const registerInteraction = (element, listener, callback) => {
       element.classList.add("interactable");
@@ -342,6 +511,72 @@
     const registerClick = (element, callback) => {
       registerInteraction(element, "click", callback);
     };
+
+    for (const box of exampleBoxes) {
+      const exampleCollection = {
+        currentIndex: 0,
+        slides: box.querySelectorAll(".example-slider"),
+        next: box.querySelector(".examples-next"),
+        previous: box.querySelector(".examples-previous"),
+        expand: box.querySelector(".toggle-expand"),
+        models: box.querySelectorAll("model-viewer")
+      };
+      const exampleCount = exampleCollection.slides.length;
+      let videos = [];
+      for (const slide of exampleCollection.slides) {
+        let htmlVideo = slide.querySelector("video");
+        if (htmlVideo) {
+          videos.push({
+            play: () => { htmlVideo.play() },
+            pause: () => { htmlVideo.pause() }
+          });
+        } else {
+          videos.push({
+            play: () => { },
+            pause: () => { }
+          });
+        }
+      }
+
+      const chooseExample = () => {
+        exampleCollection.currentIndex = mod(exampleCollection.currentIndex, exampleCount);
+        videos[mod(exampleCollection.currentIndex - 1, exampleCount)].pause();
+        videos[exampleCollection.currentIndex].play();
+        for (let i = 0; i < exampleCount; i++) {
+          let offset = (exampleCollection.currentIndex * 100).toString() + "%";
+          exampleCollection.slides[i].style["margin-left"] = "-" + offset;
+          exampleCollection.slides[i].style["margin-right"] = offset;
+        }
+      };
+
+      registerClick(exampleCollection.next, () => {
+        exampleCollection.currentIndex++;
+        chooseExample();
+      });
+
+      registerClick(exampleCollection.previous, () => {
+        exampleCollection.currentIndex--;
+        chooseExample();
+      });
+
+      registerClick(exampleCollection.expand, () => {
+        if (box.classList.contains("expand")) {
+          box.classList.remove("expand");
+          exampleCollection.expand.classList.remove("expand");
+          for (const model of exampleCollection.models) {
+            model.setAttribute("disable-zoom", "");
+          }
+        } else {
+          box.classList.add("expand");
+          exampleCollection.expand.classList.add("expand");
+          for (const model of exampleCollection.models) {
+            model.removeAttribute("disable-zoom");
+          }
+        }
+      });
+
+      chooseExample();
+    }
 
     const musicPlayer = {
       trackCount: 4,
@@ -357,10 +592,6 @@
       trackNames: document.querySelectorAll(".music-track-info>div"),
       playingIcon: document.querySelector(".music-play-button>.playing"),
       pausedIcon: document.querySelector(".music-play-button>.paused")
-    };
-
-    const mod = (n, m) => {
-      return ((n % m) + m) % m;
     };
 
     let trackIndex = 0;
@@ -719,6 +950,9 @@
     };
     for (const button of contactButtons) {
       registerScrollButton(button, sectionIndex);
+    }
+    for (const button of bodyNavButtons) {
+      registerScrollButton(button, sections.indexOf(button.getAttribute("href")));
     }
 
     const mailDecrypter = (piece) => {
