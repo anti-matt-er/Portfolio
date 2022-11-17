@@ -15,7 +15,6 @@
     ],
     "theme_color": "#376480",
     "background_color": "#376480",
-    "start_url": "https://anti-matt-er.github.io/Portfolio/",
     "display": "standalone",
     "orientation": "portrait"
 }
