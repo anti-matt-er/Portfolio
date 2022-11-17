@@ -2,4 +2,13 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 
+src/**
 img/src/**
+scss/**
+precss/**
+*.css.map
+*.ejs
+node_modules
+package.json
+package-lock.json
+webpack.config.js

@@ -1,0 +1,27 @@
+{ "frames": {
+   "enemy0": {
+    "frame": { "x": 0, "y": 0, "w": 26, "h": 25 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 26, "h": 25 },
+    "sourceSize": { "w": 26, "h": 25 }
+   },
+   "enemy1": {
+    "frame": { "x": 26, "y": 0, "w": 26, "h": 25 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 26, "h": 25 },
+    "sourceSize": { "w": 26, "h": 25 }
+   },
+   "enemy2": {
+    "frame": { "x": 52, "y": 0, "w": 26, "h": 25 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 26, "h": 25 },
+    "sourceSize": { "w": 26, "h": 25 }
+   }
+ },
+ "animations": {
+   "fly": ["enemy0", "enemy1", "enemy2", "enemy1"]
+ },
+ "meta": {
+  "image": "enemy.png",
+  "format": "RGBA8888",
+  "size": { "w": 78, "h": 25 },
+  "scale": "1"
+ }
+}

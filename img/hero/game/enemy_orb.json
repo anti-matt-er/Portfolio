@@ -1,0 +1,32 @@
+{ "frames": {
+   "enemy_orb0": {
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 }
+   },
+   "enemy_orb1": {
+    "frame": { "x": 12, "y": 0, "w": 12, "h": 12 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 }
+   },
+   "enemy_orb2": {
+    "frame": { "x": 24, "y": 0, "w": 12, "h": 12 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 }
+   },
+   "enemy_orb3": {
+    "frame": { "x": 36, "y": 0, "w": 12, "h": 12 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 }
+   }
+ },
+ "animations": {
+   "hit": ["enemy_orb0", "enemy_orb1", "enemy_orb2", "enemy_orb3"]
+ },
+ "meta": {
+  "image": "enemy_orb.png",
+  "format": "RGBA8888",
+  "size": { "w": 48, "h": 12 },
+  "scale": "1"
+ }
+}
